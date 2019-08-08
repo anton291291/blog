@@ -1,6 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
-import {HeaderBlock, Postitem} from './components/index';
+import {HeaderBlock, Postitem, AddForm, PostList, FullPost, NotFound} from './components/index';
 
 function App() {
   return (
@@ -10,60 +11,56 @@ function App() {
         description="Описание"
         imageUrl="https://images.unsplash.com/photo-1562592199-8aed6ae5252d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1789&q=80"
       />
-    <div className="container">
-      <div className="content">
-        <button type="button" className="btn btn-primary">
-          Add post
-        </button>
+      <div className="container">
+        <div className="content">
+          <button type="button" className="btn btn-primary">
+            Add post
+          </button>
+        </div>
+        <div className="content">
+          <Router>
+            <div>
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  component={() => { return  <PostList
+                    posts={[
+                      {
+                      title:"Заголовок статьи #1",
+                      createdAt:"" + new Date(),
+                      _id:"1"
+                      },
+                      {
+                      title:"Заголовок статьи #2",
+                      createdAt:"" + new Date(),
+                      _id:"2"
+                      },
+                  ]} />
+                }} />
+              <Route
+                path="/post/:id"
+                exact
+                component={() => {
+                return <FullPost
+                   text="vvrrtbbrtb"
+                   createdAt={"" + new Date()} />
+              }} />
+              <Route
+                path="/post/:id/edit"
+                exact
+                component={() => {
+                  return <AddForm />
+                }}
+                />
+              <Route
+                path="*"
+                component={NotFound} />
+              </Switch>
+            </div>
+          </Router>
+        </div>
       </div>
-      <div className="content">
-        <form className="add-form">
-          <div className = "form-group" >
-          <h4>
-            <label for="title">
-              Title
-            </label>
-          </h4>
-          <input
-            type="email"
-            className="form-control"
-            id="title"
-            placeholder="Enter email"/>
-        </div>
-        <div className="add-form__row">
-          <h4>
-            <label for="image">
-              Image URL
-            </label>
-          </h4>
-          <input
-            className="form-control"
-            id="image"
-            placeholder="Enter image URL"/>
-        </div>
-        <div className="add-form__row">
-          <h4>
-            <label for="description">
-              Description
-            </label>
-          </h4>
-          <textarea
-            rows="8"
-            className="form-control"
-            id="description"
-            placeholder="Enter text"/>
-        </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
-    < /form>
-    <div className="post-items">
-      <Postitem
-        title="Заголовок статьи"
-        createdAt={"" + new Date()}
-        _id="1"
-       />
-    </div>
-      </div>
-    </div>
     </div>
   );
 }
