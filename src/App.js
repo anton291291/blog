@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 
-import {HeaderBlock, AddForm, FullPost, NotFound} from './components/index';
-import {PostList} from './moduls/index'
+import {HeaderBlock, AddForm, NotFound} from './components/index';
+import {PostList, FullPost} from './moduls/index'
 
 function App() {
   return (
@@ -14,49 +14,36 @@ function App() {
       />
       <div className="container">
         <div className="content">
-          <button type="button" className="btn btn-primary">
-            Add post
-          </button>
-        </div>
-        <div className="content">
           <Router>
             <div>
               <Switch>
                 <Route
                   path="/"
                   exact
-                  component={() => { return  <PostList
-                    posts={[
-                      {
-                      title:"Заголовок статьи #1",
-                      createdAt:"" + new Date(),
-                      _id:"1"
-                      },
-                      {
-                      title:"Заголовок статьи #2",
-                      createdAt:"" + new Date(),
-                      _id:"2"
-                      },
-                  ]} />
-                }} />
-              <Route
-                path="/post/:id"
-                exact
-                component={() => {
-                return <FullPost
-                   text="vvrrtbbrtb"
-                   createdAt={"" + new Date()} />
-              }} />
-              <Route
-                path="/post/:id/edit"
-                exact
-                component={() => {
-                  return <AddForm />
-                }}
+                  component={() => {
+                    return  <PostList
+                    />
+                  }}
                 />
-              <Route
-                path="*"
-                component={NotFound} />
+                <Route
+                  path="/posts/:id"
+                  exact
+                  component={() => {
+                    return <FullPost
+                   />
+                  }}
+                 />
+                <Route
+                  path="/posts/:id/edit"
+                  exact
+                  component={() => {
+                    return <AddForm />
+                  }}
+                  />
+                <Route
+                  path="*"
+                  component={NotFound}
+                />
               </Switch>
             </div>
           </Router>

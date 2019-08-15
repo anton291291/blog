@@ -1,5 +1,5 @@
 const initialState = {
-  posts: null,
+  posts: [],
 };
 
 export default function (state = initialState, action) {
@@ -10,7 +10,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts:payload,
-      }
+      };
+      case 'POSTS:ADD_POST':
+        return {
+            ...state,
+            posts: [
+              ...state.posts, payload
+
+            ]
+        };
     default:
       return state;
   }

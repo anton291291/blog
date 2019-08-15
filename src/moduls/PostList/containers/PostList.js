@@ -9,7 +9,7 @@ useEffect(() => {
   fetchPosts();
 },[]);
 
-  return <PostList posts={props.posts} />
+  return <PostList {...props} />
 };
 
 export default connect(

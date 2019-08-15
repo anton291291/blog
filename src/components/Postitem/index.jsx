@@ -5,7 +5,7 @@ import "./Postitem.scss"
 const Postitem = ({title,createdAt,_id,onRemove}) => {
   return (
     <div className="post-item">
-      <Link to={`/post/${_id}`}>
+      <Link to={`/posts/${_id}`}>
         <h2>{title}</h2>
       </Link>
       <p>
@@ -13,7 +13,7 @@ const Postitem = ({title,createdAt,_id,onRemove}) => {
       <a href="javascript://" onClick={onRemove}>
         Remove
       </a>
-      <Link to={`/post/${_id}/edit`}>
+      <Link to={`/posts/${_id}/edit`}>
         Edit
       </Link>
       </p>

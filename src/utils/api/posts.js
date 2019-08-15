@@ -1,5 +1,5 @@
-import axios from 'axios';
+import axios from '../../core/axios';
 
 export default {
-  get: () => axios.get('/posts.json')
+   get: id => axios.get(`/posts${id ? '/' + id : ''}`),
 };
