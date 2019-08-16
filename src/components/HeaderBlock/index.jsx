@@ -16,4 +16,10 @@ const HeaderBlock = ({title, description, imageUrl}) => {
   );
 }
 
+HeaderBlock.defaultProps = {
+  title: 'Блог',
+  description: 'Мои путешествия',
+  imageUrl: 'https://images.unsplash.com/photo-1562592199-8aed6ae5252d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1789&q=80'
+};
+
 export default HeaderBlock;

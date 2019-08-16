@@ -13,6 +13,18 @@ const PostListActions = {
       payload: post
     }
   },
+  deletePost: (id) => {
+    return {
+      type: 'POSTS:DELETE_POST',
+      payload: id
+    }
+  },
+  fetchDeletePost: (id) => dispatch => {
+    if (global.confirm('Вы точно хотите удалить этот пост?')) {
+      dispatch(PostListActions.deletePost(id));
+      PostApi.delete(id);
+    };
+  },
   fetchPost: (id) => dispatch => {
     PostApi.get(id).then(({data}) => {
       dispatch(PostListActions.addPost(data))

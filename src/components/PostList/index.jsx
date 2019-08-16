@@ -3,13 +3,13 @@ import {Postitem} from '../index';
 
 import "./PostList.scss"
 
-const PostList = ({posts}) => {
+const PostList = ({posts,onRemove}) => {
   return (
     <div className="post-items">
       { posts ?
         posts.map((post) => {
-          return <Postitem {...post} />
-        }) : "Loading..."
+          return <Postitem {...post} onRemove={onRemove}/>
+        }) : "Загрузка..."
       }
     </div>
   );

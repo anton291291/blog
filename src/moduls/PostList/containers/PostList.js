@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {connect } from 'react-redux';
 import {PostList} from '../../../components';
 import PostListActions from '../actions';
@@ -8,8 +8,8 @@ useEffect(() => {
   const {fetchPosts} = props;
   fetchPosts();
 },[]);
-
-  return <PostList {...props} />
+  const {fetchDeletePost}= props;
+  return <PostList {...props} onRemove={fetchDeletePost}/>
 };
 
 export default connect(

@@ -9,12 +9,12 @@ const Postitem = ({title,createdAt,_id,onRemove}) => {
         <h2>{title}</h2>
       </Link>
       <p>
-        <i>Posted on {createdAt}</i>
-      <a href="javascript://" onClick={onRemove}>
-        Remove
-      </a>
+        <i>Пост создан {createdAt}</i>
+        <a href="javascript://" onClick={onRemove.bind(this, _id)}>
+          Удалить
+        </a>
       <Link to={`/posts/${_id}/edit`}>
-        Edit
+        Редактировать
       </Link>
       </p>
     </div>
