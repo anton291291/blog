@@ -2,14 +2,13 @@ import React from 'react';
 
 import "./HeaderBlock.scss";
 
-const HeaderBlock = ({title, description, imageUrl}) => {
+const HeaderBlock = ({title, imageUrl}) => {
   return (
     <div className="header-block" style={{backgroundImage: `url(${imageUrl})`}}>
       <div className="container">
         <div className="header-block__overlay"></div>
         <div className="header-block__center">
           <h1>{title}</h1>
-          <h3>{description}</h3>
         </div>
       </div>
     </div>
@@ -17,8 +16,7 @@ const HeaderBlock = ({title, description, imageUrl}) => {
 }
 
 HeaderBlock.defaultProps = {
-  title: 'Блог',
-  description: 'Мои путешествия',
+  title: 'Мои путешествия',
   imageUrl: 'https://images.unsplash.com/photo-1562592199-8aed6ae5252d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1789&q=80'
 };
 

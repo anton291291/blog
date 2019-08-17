@@ -17,7 +17,7 @@ function App() {
                 exact
                 component={() => {
                   return  <PostList
-                  />
+                          />
                 }}
               />
               <Route
@@ -25,16 +25,23 @@ function App() {
                 exact
                 component={() => {
                   return <FullPost
-                 />
+                         />
                 }}
-               />
+              />
               <Route
                 path="/posts/:id/edit"
                 exact
                 component={() => {
                   return <AddForm />
                 }}
-                />
+              />
+              <Route
+                path="/posts/edit"
+                exact
+                component={() => {
+                  return <AddForm />
+                }}
+              />
               <Route
                 path="*"
                 component={NotFound}
