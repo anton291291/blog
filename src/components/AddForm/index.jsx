@@ -23,11 +23,14 @@ const useStyles = makeStyles(theme => ({
  },
  button: {
     marginTop: theme.spacing(1),
+    left: '42%'
   }
 }));
 
-const AddForm = () => {
+const AddForm = ({title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage}) => {
+
   const classes = useStyles();
+
   return (
     <>
       <Link to="/">
@@ -38,14 +41,12 @@ const AddForm = () => {
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="outlined-email-input"
-          label="Email"
+          label="Линк на картинку"
           className={classes.textField}
-          type="email"
-          name="email"
-          autoComplete="email"
           margin="normal"
           variant="outlined"
-
+          value={imageUrl}
+          onChange={onChangeImage}
         />
         <TextField
           id="outlined-required"
@@ -53,6 +54,8 @@ const AddForm = () => {
           className={classes.textField}
           margin="normal"
           variant="outlined"
+          value={title}
+          onChange={onChangeTitle}
         />
         <TextField
           id="outlined-textarea"
@@ -64,12 +67,20 @@ const AddForm = () => {
           margin="normal"
           variant="outlined"
           rows="8"
+          value={text}
+          onChange={onChangeText}
         />
         </form >
-        <Button variant="contained" color="primary" className={classes.button}>
-          Запостить
-          <Icon className={classes.rightIcon}>send</Icon>
-        </Button>
+        <Link to="/">
+          <Button variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={onSubmit}
+          >
+            Запостить
+            <Icon className={classes.rightIcon}>send</Icon>
+          </Button>
+        </Link>
       </>
 );
 }

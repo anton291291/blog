@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
         ...state,
         posts:payload,
       };
-      case 'POSTS:ADD_POST':
+      case 'POSTS:WATCH_POST':
         return {
             ...state,
             posts: [

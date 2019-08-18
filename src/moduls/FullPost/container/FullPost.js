@@ -5,12 +5,12 @@ import {withRouter} from 'react-router';
 import PostListActions from '../../PostList/actions';
 
 const FullPostContainer = (props) => {
+
   useEffect(() => {
     const {fetchPost} = props;
     fetchPost(props.match.params.id);
-},[]);
+  },[]);
 
-const {post} = props;
   return !props.text ? 'Загрузка...' : <FullPost {...props}/>
 };
 

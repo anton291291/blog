@@ -4,7 +4,6 @@ import "./Postitem.scss";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -36,7 +35,8 @@ const Postitem = ({title,createdAt,_id,onRemove}) => {
         <Fab aria-label="delete"
           onClick={onRemove.bind(this, _id)}
           className={classes.fab}
-        size="small">
+          size="small"
+        >
           <DeleteIcon />
         </Fab>
       </p>

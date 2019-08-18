@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 
-import {AddForm, NotFound} from './components/index';
-import {PostList, FullPost, HeaderBlock} from './moduls/index'
+import {NotFound} from './components/index';
+import {PostList, FullPost, HeaderBlock, AddForm} from './moduls/index'
 
 function App() {
   return (
@@ -15,38 +15,28 @@ function App() {
               <Route
                 path="/"
                 exact
-                component={() => {
-                  return  <PostList
-                          />
-                }}
+                component={PostList}
               />
               <Route
                 path="/posts/:id"
                 exact
-                component={() => {
-                  return <FullPost
-                         />
-                }}
+                component={FullPost}
+              />
+              <Route
+                path="/editor"
+                exact
+                component={AddForm}
               />
               <Route
                 path="/posts/:id/edit"
                 exact
-                component={() => {
-                  return <AddForm />
-                }}
-              />
-              <Route
-                path="/posts/edit"
-                exact
-                component={() => {
-                  return <AddForm />
-                }}
+                component={AddForm}
               />
               <Route
                 path="*"
                 component={NotFound}
-              />
-            </Switch>
+                  />
+                  </Switch>
           </div>
         </div>
       </Router>
