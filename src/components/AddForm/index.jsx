@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddForm = ({title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage}) => {
+const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage, _id}) => {
 
   const classes = useStyles();
 
@@ -71,16 +71,15 @@ const AddForm = ({title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onC
           onChange={onChangeText}
         />
         </form >
-        <Link to="/">
-          <Button variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={onSubmit}
-          >
-            Запостить
-            <Icon className={classes.rightIcon}>send</Icon>
-          </Button>
-        </Link>
+        <Button variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={onSubmit}
+        >
+          Запостить
+          <Icon className={classes.rightIcon}>send</Icon>
+        </Button>
+
       </>
 );
 }

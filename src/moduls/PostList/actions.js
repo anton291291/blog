@@ -10,16 +10,9 @@ const PostListActions = {
 
   watchPost: (post) => {
     return {
-      type: "POSTS:ADD_POST",
+      type: "POSTS:WATCH_POST",
       payload: post
     }
-  },
-
-  deletePost: (id) => {
-    return {
-      type: 'POSTS:DELETE_POST',
-      payload: id
-    };
   },
 
   addPost: (data) => {
@@ -29,9 +22,20 @@ const PostListActions = {
     };
   },
 
+  deletePost: (id) => {
+    return {
+      type: 'POSTS:DELETE_POST',
+      payload: id
+    };
+  },
+
   fetchAddPost: (data) => dispatch => {
-    PostApi.post(data)
+    PostApi.post(data).then(() => console.log("Success fetch to DB"));
       dispatch(PostListActions.addPost(data));
+      PostApi.get().then(({data}) => {
+        console.log("Success downloading");
+        dispatch(PostListActions.showPosts(data));
+      })
   },
 
   fetchDeletePost: (id) => dispatch => {

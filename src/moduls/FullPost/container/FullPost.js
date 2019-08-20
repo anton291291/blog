@@ -11,7 +11,7 @@ const FullPostContainer = (props) => {
     fetchPost(props.match.params.id);
   },[]);
 
-  return !props.text ? 'Загрузка...' : <FullPost {...props}/>
+  return  <FullPost {...props}/>
 };
 
 const mapStateToProps = ({posts},{match: {params:{id}}}) => {

@@ -16,7 +16,6 @@ export default function (state = initialState, action) {
             ...state,
             posts: [
               ...state.posts, payload
-
             ]
         };
       case 'POSTS:DELETE_POST':
@@ -26,6 +25,11 @@ export default function (state = initialState, action) {
           return  post._id !== payload
           })
         };
+          case "POSTS:ADD_POST":
+            return {
+              ...state,
+              forms: payload
+            };
     default:
       return state;
   }
