@@ -1,5 +1,10 @@
 const initialState = {
   posts: [],
+  text: "",
+  title:"",
+imageUrl: "",
+id: {},
+
 };
 
 export default function (state = initialState, action) {
@@ -10,27 +15,55 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts:payload,
-      };
-      case 'POSTS:WATCH_POST':
-        return {
-            ...state,
-            posts: [
-              ...state.posts, payload
-            ]
-        };
-      case 'POSTS:DELETE_POST':
-        return {
+    };
+
+    case 'POSTS:WATCH_POST':
+      return {
           ...state,
-          posts: state.posts.filter((post) => {
-          return  post._id !== payload
-          })
-        };
-          case "POSTS:ADD_POST":
-            return {
-              ...state,
-              forms: payload
-            };
+          posts: [
+            ...state.posts, payload
+          ]
+    };
+
+    case 'POSTS:DELETE_POST':
+      return {
+        ...state,
+        posts: state.posts.filter((post) => {
+        return  post._id !== payload
+        })
+    };
+
+    case "POSTS:ADD_POST":
+      return {
+        ...state,
+        forms: payload
+    };
+
+    case "FORMS:CHANGE_TEXT":
+      return {
+          ...state,
+        text: payload
+    };
+
+    case "FORMS:CHANGE_TITLE":
+      return {
+          ...state,
+        title: payload
+    };
+
+    case "FORMS:CHANGE_IMAGEURL":
+      return {
+          ...state,
+        imageUrl: payload
+    };
+
+    case "FORMS:DIRECT_TO_POST":
+      return {
+          ...state,
+        id: payload._id
+    };
+
     default:
       return state;
-  }
+  };
 };

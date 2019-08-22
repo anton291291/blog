@@ -1,4 +1,6 @@
 import {PostApi} from '../../utils/api';
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
 
 const PostListActions = {
   showPosts: (posts) => {
@@ -29,13 +31,24 @@ const PostListActions = {
     };
   },
 
+  directToPost: (data) => {
+    return {
+    type: 'FORMS:DIRECT_TO_POST',
+    payload: data
+  }
+  },
+
   fetchAddPost: (data) => dispatch => {
     PostApi.post(data).then(() => console.log("Success fetch to DB"));
-      dispatch(PostListActions.addPost(data));
-      PostApi.get().then(({data}) => {
-        console.log("Success downloading");
-        dispatch(PostListActions.showPosts(data));
-      })
+    PostApi.get().then(({data}) => {
+       dispatch(PostListActions.directToPost(data[data.length - 1]))
+        setTimeout(() => {
+          console.log(data[data.length - 1]);
+        },1000)
+
+        {/*dispatch(PostListActions.directToPost(data));
+*/}
+  })
   },
 
   fetchDeletePost: (id) => dispatch => {
@@ -55,7 +68,40 @@ const PostListActions = {
     PostApi.get().then(({data}) => {
       dispatch(PostListActions.showPosts(data))
     })
-  }
+  },
+
+  changeText: (e) => {
+    return {
+      type: "FORMS:CHANGE_TEXT",
+      payload: e
+    };
+  },
+
+  changeTitle: (e) => {
+    return {
+      type: "FORMS:CHANGE_TITLE",
+      payload: e
+    };
+  },
+
+  changeImageUrl: (e) => {
+    return {
+      type: "FORMS:CHANGE_IMAGEURL",
+      payload: e
+    };
+  },
+
+  handleChangeText: (e) => dispatch => {
+  dispatch(PostListActions.changeText(e))
+  },
+
+  handleChangeTitle: (e) => dispatch => {
+  dispatch(PostListActions.changeTitle(e))
+  },
+
+  handleChangeImageUrl: (e) => dispatch => {
+  dispatch(PostListActions.changeImageUrl(e))
+  },
 };
 
 export default PostListActions;

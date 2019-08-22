@@ -1,51 +1,56 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 
 
+import {AddForm} from '../../../components/index';
+
 import PostListActions from '../../PostList/actions';
 
-import {AddForm} from '../../../components/index';
+
 
 const AddFormContainer = (props) => {
 
-  const [text,setText] = useState("");
 
-  const [title,setTitle] = useState("");
+  const {fetchAddPost,fetchPosts, history, id} = props;
 
-  const [imageUrl,setImageUrl] = useState("");
 
-  const {fetchAddPost, fetchPosts,fetchPost, history, id} = props;
 
-  const date = {"title": title,"text": text,"imageUrl": imageUrl};
+  const {handleChangeText, handleChangeTitle, handleChangeImageUrl, text,title, imageUrl,posts}= props;
+
+    const date = {"title": title,"text": text,"imageUrl": imageUrl};
+
+    useEffect(() => {
+      fetchPosts()
+    },[])
 console.log(props);
 
   return <AddForm
-    _id={id}
     title={title}
+    postId={id}
     imageUrl={imageUrl}
     text={text}
     onChangeImage={e =>
-      setImageUrl(e.target.value)
+      handleChangeImageUrl(e.target.value)
     }
     onChangeText={e =>
-      setText(e.target.value)
+      handleChangeText(e.target.value)
     }
     onChangeTitle={e =>
-      setTitle(e.target.value)
+      handleChangeTitle(e.target.value)
     }
-    onSubmit={ () => {
+    onSubmit={ (e) => {
       fetchAddPost(date);
-      setTimeout(()=> {console.log(props)},3000)
-      setTimeout(() => {history.push(`/posts/${props._id}`)}, 5000)
+      setTimeout(() => {console.log(props);}, 5000)
+
     }
     }/>
 };
 
-const mapStateToProps = ({posts},ownProps) => {
+const mapStateToProps = ({posts}) => {
   console.log(posts)
-   return posts.forms ?  posts.posts.filter(item => item.text === posts.forms.text)[0] :
-  posts
+   return  {...posts}
+
 };
 
 export default withRouter(

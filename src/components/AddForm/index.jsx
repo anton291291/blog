@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage, _id}) => {
+const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage, postId,history}) => {
 
   const classes = useStyles();
 
@@ -79,7 +79,6 @@ const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,on
           Запостить
           <Icon className={classes.rightIcon}>send</Icon>
         </Button>
-
       </>
 );
 }
