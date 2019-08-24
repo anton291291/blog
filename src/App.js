@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 
 import {NotFound} from './components/index';
-import {PostList, FullPost, HeaderBlock, AddForm} from './moduls/index'
+import {PostList, FullPost, HeaderBlock, AddForm,PostEditor} from './moduls/index'
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
               <Route
                 path="/posts/:id/edit"
                 exact
-                component={AddForm}
+                component={PostEditor}
               />
               <Route
                 path="*"

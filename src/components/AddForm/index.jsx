@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage, postId,history}) => {
 
   const classes = useStyles();
-
+console.log(text);
   return (
     <>
       <Link to="/">

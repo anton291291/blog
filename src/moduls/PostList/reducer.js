@@ -15,6 +15,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts:payload,
+<<<<<<< HEAD
     };
 
     case 'POSTS:WATCH_POST':
@@ -62,6 +63,28 @@ export default function (state = initialState, action) {
           ...state,
         id: payload._id
     };
+=======
+      };
+      case 'POSTS:WATCH_POST':
+        return {
+            ...state,
+            posts: [
+              ...state.posts, payload
+            ]
+      };
+      case 'POSTS:DELETE_POST':
+        return {
+          ...state,
+          posts: state.posts.filter((post) => {
+          return  post._id !== payload
+        })
+      };
+      case "POSTS:ADD_POST":
+        return {
+          ...state,
+          forms: payload
+        };
+>>>>>>> PostEditor
 
     default:
       return state;

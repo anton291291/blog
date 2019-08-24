@@ -70,6 +70,7 @@ const PostListActions = {
     })
   },
 
+<<<<<<< HEAD
   changeText: (e) => {
     return {
       type: "FORMS:CHANGE_TEXT",
@@ -102,6 +103,8 @@ const PostListActions = {
   handleChangeImageUrl: (e) => dispatch => {
   dispatch(PostListActions.changeImageUrl(e))
   },
+=======
+>>>>>>> PostEditor
 };
 
 export default PostListActions;

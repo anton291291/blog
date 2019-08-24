@@ -7,15 +7,16 @@ import PostListActions from '../../PostList/actions';
 const FullPostContainer = (props) => {
 
   useEffect(() => {
-    const {fetchPost} = props;
-    fetchPost(props.match.params.id);
+    const {fetchPosts} = props;
+    fetchPosts();
   },[]);
 
   return  <FullPost {...props}/>
 };
 
 const mapStateToProps = ({posts},{match: {params:{id}}}) => {
-  return posts.posts.filter(post => post._id === id)[0];
+  console.log(posts.posts.filter(post => post._id === id)[Array.length - 1]);
+  return posts.posts.filter(post => post._id === id)[Array.length - 1];
 };
 
 export default withRouter(
