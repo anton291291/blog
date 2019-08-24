@@ -55,7 +55,8 @@ const PostListActions = {
     PostApi.get().then(({data}) => {
       dispatch(PostListActions.showPosts(data))
     })
-  }
+  },
+
 };
 
 export default PostListActions;

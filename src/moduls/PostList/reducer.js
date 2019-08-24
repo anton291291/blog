@@ -17,19 +17,20 @@ export default function (state = initialState, action) {
             posts: [
               ...state.posts, payload
             ]
-        };
+      };
       case 'POSTS:DELETE_POST':
         return {
           ...state,
           posts: state.posts.filter((post) => {
           return  post._id !== payload
-          })
+        })
+      };
+      case "POSTS:ADD_POST":
+        return {
+          ...state,
+          forms: payload
         };
-          case "POSTS:ADD_POST":
-            return {
-              ...state,
-              forms: payload
-            };
+
     default:
       return state;
   }

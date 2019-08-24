@@ -29,7 +29,7 @@ const PostList = ({posts,onRemove}) => {
       <div className="post-items">
         { posts ?
           posts.map((post) => {
-            return <Postitem {...post} onRemove={onRemove}/>
+            return <Postitem {...post} key={post._id} onRemove={onRemove}/>
           }) : "Загрузка..."
         }
       </div>

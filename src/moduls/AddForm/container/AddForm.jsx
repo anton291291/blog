@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 
+import {PostApi} from '../../../utils/api';
 
 import PostListActions from '../../PostList/actions';
 
@@ -9,19 +10,19 @@ import {AddForm} from '../../../components/index';
 
 const AddFormContainer = (props) => {
 
+  const {fetchPosts, history} = props;
+
+  useEffect(() => {fetchPosts()},[]);
+
   const [text,setText] = useState("");
 
   const [title,setTitle] = useState("");
 
   const [imageUrl,setImageUrl] = useState("");
 
-  const {fetchAddPost, fetchPosts,fetchPost, history, id} = props;
-
   const date = {"title": title,"text": text,"imageUrl": imageUrl};
-console.log(props);
 
   return <AddForm
-    _id={id}
     title={title}
     imageUrl={imageUrl}
     text={text}
@@ -35,19 +36,16 @@ console.log(props);
       setTitle(e.target.value)
     }
     onSubmit={ () => {
-      fetchAddPost(date);
-      setTimeout(()=> {console.log(props)},3000)
-      setTimeout(() => {history.push(`/posts/${props._id}`)}, 5000)
+      PostApi.post(date)
+      .then((res) => console.log(res));
+      PostApi.get()
+      .then(({data}) => {
+        setTimeout(() => {history.push(`/posts/${data[data.length -1]._id}`)}, 1000)
+      })
     }
     }/>
 };
 
-const mapStateToProps = ({posts},ownProps) => {
-  console.log(posts)
-   return posts.forms ?  posts.posts.filter(item => item.text === posts.forms.text)[0] :
-  posts
-};
-
 export default withRouter(
-  connect(mapStateToProps, PostListActions)(AddFormContainer)
+  connect(null, PostListActions)(AddFormContainer)
 )
