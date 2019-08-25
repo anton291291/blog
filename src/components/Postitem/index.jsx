@@ -1,6 +1,11 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+
 import "./Postitem.scss";
+import ScrollAnimation from 'react-animate-on-scroll';
+
+import moment from 'moment';
+import 'moment/locale/ru'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
@@ -9,37 +14,56 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(theme => ({
   fab: {
-    marginLeft: "30px",
-    marginBottom: "8px"
+    marginLeft: "40px",
+    marginBottom: "8px",
+    position: "absolute",
+    marginTop: "-9px"
   },
+
+  deleteBlock: {
+    left: "60%"
+  },
+
+  editBlock: {
+    left: "50%"
+  }
 }));
 
 const Postitem = ({title,createdAt,_id,onRemove}) => {
   const classes = useStyles();
+
+  moment.locale('ru');
+
   return (
+
     <div className="post-item">
-      <Link to={`/posts/${_id}`}>
-        <h2>{title}</h2>
-      </Link>
-      <p>
-        <i>Пост создан {createdAt}</i>
-        <Link to={`/posts/${_id}/edit`}>
-          <Fab color="secondary"
-            aria-label="edit"
-            className={classes.fab}
+      <ScrollAnimation
+        animateIn='fadeIn'
+        duration={2.5}
+      >
+        <Link to={`/posts/${_id}`}>
+          <h2>{title}</h2>
+        </Link>
+        <p>
+          <i>Пост создан {moment(createdAt).format('LLL')}</i>
+          <Link to={`/posts/${_id}/edit`}>
+            <Fab color="secondary"
+              aria-label="edit"
+              className={`${classes.fab} ${classes.editBlock}`}
+              size="small"
+            >
+              <Icon>edit_icon</Icon>
+            </Fab>
+          </Link>
+          <Fab aria-label="delete"
+            onClick={onRemove.bind(this, _id)}
+            className={`${classes.fab} ${classes.deleteBlock}`}
             size="small"
           >
-            <Icon>edit_icon</Icon>
+            <DeleteIcon />
           </Fab>
-        </Link>
-        <Fab aria-label="delete"
-          onClick={onRemove.bind(this, _id)}
-          className={classes.fab}
-          size="small"
-        >
-          <DeleteIcon />
-        </Fab>
-      </p>
+        </p>
+      </ScrollAnimation>
     </div>
   );
 }

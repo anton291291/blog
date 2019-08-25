@@ -6,7 +6,7 @@ import {PostApi} from '../../../utils/api';
 
 import PostListActions from '../../PostList/actions';
 
-import {AddForm} from '../../../components/index';
+import {AddForm,HeaderBlock} from '../../../components/index';
 
 const AddFormContainer = (props) => {
 
@@ -22,7 +22,10 @@ const AddFormContainer = (props) => {
 
   const date = {"title": title,"text": text,"imageUrl": imageUrl};
 
-  return <AddForm
+  return (
+    <>
+    <HeaderBlock/>
+    <AddForm
     title={title}
     imageUrl={imageUrl}
     text={text}
@@ -44,6 +47,8 @@ const AddFormContainer = (props) => {
       })
     }
     }/>
+  </>
+  )
 };
 
 export default withRouter(

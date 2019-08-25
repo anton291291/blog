@@ -1,9 +1,15 @@
 import React from 'react';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 import "./HeaderBlock.scss";
 
 const HeaderBlock = ({title, imageUrl}) => {
   return (
+    <ScrollAnimation
+      animateIn='fadeIn'
+      duration={3}
+      animateOnce={true}
+    >
     <div className="header-block" style={{backgroundImage: `url(${imageUrl})`}}>
       <div className="container">
         <div className="header-block__overlay"></div>
@@ -12,6 +18,7 @@ const HeaderBlock = ({title, imageUrl}) => {
         </div>
       </div>
     </div>
+    </ScrollAnimation>
   );
 }
 

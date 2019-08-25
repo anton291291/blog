@@ -1,18 +1,38 @@
 import React, {useEffect} from 'react';
 import {connect } from 'react-redux';
+import {HollowDotsSpinner} from 'react-epic-spinners';
+
 import {PostList} from '../../../components';
+import {HeaderBlock} from '../../index';
 import PostListActions from '../actions';
 
 const PostListContainer = (props) => {
+
+  const {fetchPosts, fetchDeletePost,isLoading} = props;
+
 useEffect(() => {
-  const {fetchPosts} = props;
   fetchPosts();
 },[]);
-  const {fetchDeletePost}= props;
-  return <PostList {...props} onRemove={fetchDeletePost}/>
+
+  return (
+    !isLoading ?
+    <>
+      <HeaderBlock/><PostList {...props} onRemove={fetchDeletePost}/>
+    </>
+       :
+      <HollowDotsSpinner
+        color='#f50057'
+        size='30'
+        animationDuration='1000'
+        className="preloader"
+      />
+     )
 };
 
+const mapStateToProps = ({posts}) => {
+return posts};
+
 export default connect(
-  ({posts}) => posts,
+  mapStateToProps,
   PostListActions
 )(PostListContainer);

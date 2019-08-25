@@ -2,7 +2,7 @@ import React, {useEffect,useState} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 
-import {AddForm} from '../../../components/index';
+import {AddForm, HeaderBlock} from '../../../components/index';
 import PostListActions from '../../PostList/actions';
 import {PostApi} from '../../../utils/api';
 
@@ -26,26 +26,31 @@ const PostEditorContainer = (props) => {
     text: textNode,
   };
 
-  return <AddForm
-    title={titleNode}
-    imageUrl={imageUrlNode}
-    text={textNode}
-    onChangeImage={e =>
-      setImageUrl(e.target.value)
-    }
-    onChangeText={e =>
-      setText(e.target.value)
-    }
-    onChangeTitle={e =>
-      setTitle(e.target.value)
-    }
-    onSubmit={() => {
-      PostApi.put(_id,updateData)
-      setTimeout(() => {
-        history.push(`/posts/${_id}`)
-      }, 2000)
-    }}
-         />
+  return (
+    <>
+      <HeaderBlock/>
+      <AddForm
+      title={titleNode}
+      imageUrl={imageUrlNode}
+      text={textNode}
+      onChangeImage={e =>
+        setImageUrl(e.target.value)
+      }
+      onChangeText={e =>
+        setText(e.target.value)
+      }
+      onChangeTitle={e =>
+        setTitle(e.target.value)
+      }
+      onSubmit={() => {
+        PostApi.put(_id,updateData)
+        setTimeout(() => {
+          history.push(`/posts/${_id}`)
+        }, 2000)
+      }}
+           />
+    </>
+  )
 };
 
 

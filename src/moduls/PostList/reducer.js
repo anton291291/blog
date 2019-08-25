@@ -1,5 +1,6 @@
 const initialState = {
   posts: [],
+  isLoading: false,
 };
 
 export default function (state = initialState, action) {
@@ -29,6 +30,18 @@ export default function (state = initialState, action) {
         return {
           ...state,
           forms: payload
+        };
+
+      case "POSTS:LOADING":
+        return {
+          ...state,
+          isLoading: payload
+        };
+
+      case "POSTS:STOP_LOADING":
+        return {
+          ...state,
+          isLoading: payload
         };
 
     default:

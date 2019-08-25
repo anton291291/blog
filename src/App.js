@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <HeaderBlock/>
         <div className="container">
           <div className="content">
             <Switch>

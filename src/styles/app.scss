@@ -1,11 +1,54 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC|Spectral+SC&display=swap');
+
+
+html {
+  overflow-x: hidden;
+}
+
+button:focus {
+  outline: none;
+}
+
+a {
+
+  &:focus {
+  outline: none;
+  }
+
+  &:hover {
+  text-decoration: none;
+  }
+
+}
+
+h1 {
+  font-family: 'Spectral SC', serif;
+}
+
+p,i {
+  font-family: 'Noto Serif TC', serif;
+}
 
 .content {
-  margin: 60px auto;
+  margin-bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
+
+  h2 {
+  font-family: 'Spectral SC', serif;
+  }
+
 }
 
 .add-form {
   &__row {
     margin-bottom: 30px;
   }
+}
+
+.preloader {
+  margin-left: 40%;
+  margin-top: 50%;
+
 }

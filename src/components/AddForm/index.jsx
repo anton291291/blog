@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 
 import "./AddForm.scss";
+import ScrollAnimation from 'react-animate-on-scroll';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -32,55 +33,59 @@ const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,on
   const classes = useStyles();
 console.log(text);
   return (
-    <>
-      <Link to="/">
-        <Button variant="contained" color="secondary" size="medium">
-          Назад
-        </Button>
-      </Link>
-      <form className={classes.container} noValidate autoComplete="off">
-        <TextField
-          id="outlined-email-input"
-          label="Линк на картинку"
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-          value={imageUrl}
-          onChange={onChangeImage}
-        />
-        <TextField
-          id="outlined-required"
-          label="Заголовок поста"
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-          value={title}
-          onChange={onChangeTitle}
-        />
-        <TextField
-          id="outlined-textarea"
-          label="Текст поста"
-          placeholder="Как-то мне не сиделось..."
-          multiline
-          fullWidth
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-          rows="8"
-          value={text}
-          onChange={onChangeText}
-        />
-        </form >
-        <Button variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={onSubmit}
-        >
-          Запостить
-          <Icon className={classes.rightIcon}>send</Icon>
-        </Button>
-
-      </>
+    <div className="form-block">
+      <ScrollAnimation
+        animateIn='fadeIn'
+        duration={2}
+      >
+        <Link to="/">
+          <Button variant="contained" color="secondary" size="medium">
+            Назад
+          </Button>
+        </Link>
+        <form className={classes.container} noValidate autoComplete="off">
+          <TextField
+            id="outlined-email-input"
+            label="Линк на картинку"
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
+            value={imageUrl}
+            onChange={onChangeImage}
+          />
+          <TextField
+            id="outlined-required"
+            label="Заголовок поста"
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
+            value={title}
+            onChange={onChangeTitle}
+          />
+          <TextField
+            id="outlined-textarea"
+            label="Текст поста"
+            placeholder="Как-то мне не сиделось..."
+            multiline
+            fullWidth
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
+            rows="8"
+            value={text}
+            onChange={onChangeText}
+          />
+          </form >
+          <Button variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={onSubmit}
+          >
+            Запостить
+            <Icon className={classes.rightIcon}>send</Icon>
+          </Button>
+        </ScrollAnimation>
+    </div>
 );
 }
 

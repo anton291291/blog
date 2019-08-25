@@ -29,14 +29,19 @@ const PostListActions = {
     };
   },
 
-  fetchAddPost: (data) => dispatch => {
-    PostApi.post(data).then(() => console.log("Success fetch to DB"));
-      dispatch(PostListActions.addPost(data));
-      PostApi.get().then(({data}) => {
-        console.log("Success downloading");
-        dispatch(PostListActions.showPosts(data));
-      })
-  },
+  preloaderOn: (bool) => {
+    return {
+      type: 'POSTS:LOADING',
+    payload: true
+  }
+},
+
+preloaderOff: (bool) => {
+  return {
+    type: 'POSTS:STOP_LOADING',
+  payload: false
+}
+},
 
   fetchDeletePost: (id) => dispatch => {
     if (global.confirm('Вы точно хотите удалить этот пост?')) {
@@ -52,9 +57,11 @@ const PostListActions = {
   },
 
   fetchPosts: () => dispatch => {
+    dispatch(PostListActions.preloaderOn());
+
     PostApi.get().then(({data}) => {
       dispatch(PostListActions.showPosts(data))
-    })
+    }).then(() => dispatch(PostListActions.preloaderOff()));
   },
 
 };
