@@ -43,6 +43,7 @@ preloaderOff: (bool) => {
 }
 },
 
+
   fetchDeletePost: (id) => dispatch => {
     if (global.confirm('Вы точно хотите удалить этот пост?')) {
       dispatch(PostListActions.deletePost(id));

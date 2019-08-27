@@ -1,6 +1,19 @@
-import {HeaderBlock} from '../../../components/index';
+import React,{useState} from 'react';
+import {HeaderBlock,UserLogin} from '../../../components/index';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
+
+const HeaderBlockContainer = (props) => {
+
+    const [modal,setModal] = useState(false);
+
+  return (
+    <>
+      <HeaderBlock onClick={() => {setModal(!modal)}}/>
+      {modal ? <UserLogin/>: null}
+    </>
+      );
+};
 
 const mapStateToProps = ({posts},{location: {pathname}}) => {
   const id = pathname.split('/posts/')[1];
@@ -8,5 +21,5 @@ const mapStateToProps = ({posts},{location: {pathname}}) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps)(HeaderBlock)
+  connect(mapStateToProps)(HeaderBlockContainer)
 );

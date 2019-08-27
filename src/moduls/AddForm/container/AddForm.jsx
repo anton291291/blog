@@ -8,6 +8,7 @@ import PostListActions from '../../PostList/actions';
 
 import {AddForm,HeaderBlock} from '../../../components/index';
 
+
 const AddFormContainer = (props) => {
 
   const {fetchPosts, history} = props;

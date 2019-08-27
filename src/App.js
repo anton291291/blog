@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 
-import {NotFound} from './components/index';
-import {PostList, FullPost, HeaderBlock, AddForm,PostEditor} from './moduls/index'
+import {NotFound,} from './components/index';
+import {PostList, FullPost, HeaderBlock, AddForm,PostEditor,UserLogin} from './moduls/index'
 
 function App() {
   return (
@@ -30,6 +30,11 @@ function App() {
                 path="/posts/:id/edit"
                 exact
                 component={PostEditor}
+              />
+              <Route
+                path="/api/users/login"
+                exact
+                component={UserLogin}
               />
               <Route
                 path="*"

@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState, useReducer} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 
@@ -9,16 +9,16 @@ import {PostApi} from '../../../utils/api';
 const PostEditorContainer = (props) => {
 
   const {fetchPosts,_id,text,title,imageUrl,history} = props;
-  console.log(props);
-  useEffect(() => {
-    fetchPosts();
-  });
 
-  fetchPosts()
+  console.log(props);
 
   const [textNode,setText] = useState(text);
   const [titleNode,setTitle] = useState(title);
   const [imageUrlNode,setImageUrl] = useState(imageUrl);
+
+  useEffect(() => {
+    fetchPosts();
+  },[]);
 
   const updateData = {
     imageUrl: imageUrlNode,
