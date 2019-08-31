@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "40px",
     marginBottom: "8px",
     position: "absolute",
-    marginTop: "-9px"
+    marginTop: "-28px"
   },
 
   deleteBlock: {
@@ -29,13 +29,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Postitem = ({title,createdAt,_id,onRemove}) => {
+const Postitem = ({title,createdAt,_id,onRemove,isAuthenticated}) => {
   const classes = useStyles();
 
   moment.locale('ru');
 
   return (
-
     <div className="post-item">
       <ScrollAnimation
         animateIn='fadeIn'
@@ -46,22 +45,35 @@ const Postitem = ({title,createdAt,_id,onRemove}) => {
         </Link>
         <p>
           <i>Пост создан {moment(createdAt).format('LLL')}</i>
-          <Link to={`/posts/${_id}/edit`}>
-            <Fab color="secondary"
-              aria-label="edit"
-              className={`${classes.fab} ${classes.editBlock}`}
+
+          {isAuthenticated
+            ?
+            <>
+            <ScrollAnimation
+              animateIn='fadeIn'
+              duration={2.5}
+              offset={50}
+            >
+            <Link to={`/posts/${_id}/edit`}>
+              <Fab color="secondary"
+                aria-label="edit"
+                className={`${classes.fab} ${classes.editBlock}`}
+                size="small"
+              >
+                <Icon>edit_icon</Icon>
+              </Fab>
+            </Link>
+            <Fab aria-label="delete"
+              onClick={onRemove.bind(this, _id)}
+              className={`${classes.fab} ${classes.deleteBlock}`}
               size="small"
             >
-              <Icon>edit_icon</Icon>
+              <DeleteIcon />
             </Fab>
-          </Link>
-          <Fab aria-label="delete"
-            onClick={onRemove.bind(this, _id)}
-            className={`${classes.fab} ${classes.deleteBlock}`}
-            size="small"
-          >
-            <DeleteIcon />
-          </Fab>
+            </ScrollAnimation>
+            </>
+          : null}
+
         </p>
       </ScrollAnimation>
     </div>

@@ -6,6 +6,7 @@ import {HollowDotsSpinner} from 'react-epic-spinners';
 import {HeaderBlock} from '../../index';
 import {FullPost} from '../../../components';
 import PostListActions from '../../PostList/actions';
+import UserLoginActions from '../../UserLogin/actions';
 
 const FullPostContainer = (props) => {
 
@@ -17,7 +18,7 @@ const FullPostContainer = (props) => {
 
   return (
     !isLoading ?
-      <> <HeaderBlock /> <FullPost {...props.posts}/> </>
+      <> <HeaderBlock {...props} /> <FullPost {...props.posts}/> </>
     :
       <HollowDotsSpinner
         color='#f50057'
@@ -28,13 +29,20 @@ const FullPostContainer = (props) => {
   )
 };
 
-const mapStateToProps = ({posts},{match: {params:{id}}}) => {
+const mapStateToProps = ({posts, auth},{match: {params:{id}}}) => {
+  console.log(auth);
   return {
     posts: posts.posts.filter(post => post._id === id)[Array.length - 1],
-    isLoading: posts.isLoading
+    isLoading: posts.isLoading,
+    isAuthenticated: {...auth.isAuthenticated}
   }
 };
 
+const mapDispatchToProps = {
+  ...PostListActions,
+  ...UserLoginActions
+};
+
 export default withRouter(
-  connect(mapStateToProps, PostListActions)(FullPostContainer)
+  connect(mapStateToProps, mapDispatchToProps)(FullPostContainer)
 );

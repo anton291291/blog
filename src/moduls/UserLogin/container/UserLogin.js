@@ -7,7 +7,7 @@ import {UserLogin} from '../../../components';
 
 const UserLoginContainer = (props) => {
 
-  const {loginUser, payload} = props;
+  const {loginUser, payload,isModalOn,toggleModal,deleteLoginError} = props;
 
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
@@ -16,18 +16,22 @@ const UserLoginContainer = (props) => {
     "email": email,
     "password": password
   };
-console.log(payload == undefined ? null : payload.email);
+
   return (
     <UserLogin
+      onClick={() => {
+        deleteLoginError();
+        toggleModal(!isModalOn);
+      }}
       email={email}
-      emailValid={payload == undefined ? null : payload.email}
-      emailError={payload == undefined ? false : true}
-      passwordError={payload == undefined ? false : true}
-      passwordValid={payload == undefined ? null : payload.password}
+      emailValid={payload === undefined ? null : payload.email}
+      emailError={payload !== undefined && payload.hasOwnProperty('error') ? true : false}
+      passwordError={payload === undefined ? false : true}
+      passwordValid={payload !== undefined && payload.hasOwnProperty('password') ? true : false}
       password={password}
       onSubmit={() => {
-        loginUser(loginData)
-        console.log(loginData);
+        loginUser(loginData,!isModalOn)
+
       }}
       onChangeEmail={(e) => {
         setEmail(e.target.value)
@@ -39,13 +43,14 @@ console.log(payload == undefined ? null : payload.email);
   );
 };
 
-UserLoginContainer.propTypes = {
-    errors: PropTypes.object.isRequired
-}
 
-const mapStateToProps = ({errors}) => {
-  console.log(errors);
-return errors};
+const mapStateToProps = ({errors,modal,auth}) => {
+return {
+  ...errors,
+  ...modal,
+  ...auth
+  }
+};
 
 export default connect(
   mapStateToProps,

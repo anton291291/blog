@@ -17,28 +17,34 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const PostList = ({posts,onRemove}) => {
+const PostList = ({posts,onRemove,isAuthenticated}) => {
 
   const classes = useStyles();
 
   return (
     <>
-      <ScrollAnimation
-        animateIn='fadeIn'
-        duration={5}
-        delay={1000}
-        animateOnce={true}
-      >
-        <Link to="/editor">
-          <Fab color="primary" aria-label="add" className={classes.fab}>
-            <AddIcon />
-          </Fab>
-        </Link>
-      </ScrollAnimation>
+      {isAuthenticated
+        ?
+        <ScrollAnimation
+          animateIn='bounce'
+          duration={3}
+          delay={1000}
+          animateOnce={true} >
+          <Link to="/editor">
+            <Fab color="primary" aria-label="add" className={classes.fab}>
+              <AddIcon />
+            </Fab>
+          </Link>
+        </ScrollAnimation>
+       :
+       null}
+
         <div className="post-items">
           {
             posts.map((post) => {
-              return <Postitem {...post} key={post._id} onRemove={onRemove}/>
+              return <Postitem {...post} key={post._id}
+                isAuthenticated={isAuthenticated}
+                 onRemove={onRemove}/>
             })
           }
         </div>

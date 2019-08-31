@@ -1,14 +1,16 @@
-import React, {useEffect} from 'react';
+ import React, {useEffect} from 'react';
 import {connect } from 'react-redux';
 import {HollowDotsSpinner} from 'react-epic-spinners';
 
 import {PostList} from '../../../components';
 import {HeaderBlock} from '../../index';
+
 import PostListActions from '../actions';
+import UserLoginActions from '../../UserLogin/actions'
 
 const PostListContainer = (props) => {
 
-  const {fetchPosts, fetchDeletePost,isLoading} = props;
+  const {fetchPosts, fetchDeletePost,isLoading, isAuthenticated, user} = props;
 
 useEffect(() => {
   fetchPosts();
@@ -17,7 +19,11 @@ useEffect(() => {
   return (
     !isLoading ?
     <>
-      <HeaderBlock/><PostList {...props} onRemove={fetchDeletePost}/>
+      <HeaderBlock
+        isAuthenticated={isAuthenticated}
+      />
+      <PostList {...props}
+        onRemove={fetchDeletePost}/>
     </>
        :
       <HollowDotsSpinner
@@ -29,10 +35,15 @@ useEffect(() => {
      )
 };
 
-const mapStateToProps = ({posts}) => {
-return posts};
+const mapStateToProps = ({posts,auth}) => {
+return {...posts,...auth}};
+
+const mapDispatchToProps = {
+  ...UserLoginActions,
+  ...PostListActions,
+};
 
 export default connect(
   mapStateToProps,
-  PostListActions
+  mapDispatchToProps
 )(PostListContainer);

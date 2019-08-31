@@ -5,6 +5,7 @@ import {withRouter} from 'react-router';
 import {PostApi} from '../../../utils/api';
 
 import PostListActions from '../../PostList/actions';
+import UserLoginActions from '../../UserLogin/actions';
 
 import {AddForm,HeaderBlock} from '../../../components/index';
 
@@ -25,7 +26,7 @@ const AddFormContainer = (props) => {
 
   return (
     <>
-    <HeaderBlock/>
+    <HeaderBlock {...props}/>
     <AddForm
     title={title}
     imageUrl={imageUrl}
@@ -52,6 +53,19 @@ const AddFormContainer = (props) => {
   )
 };
 
+const mapStateToProps = ({auth}) => {
+  console.log(auth);
+  return {
+    isAuthenticated: {...auth.isAuthenticated}
+  }
+};
+
+
+const mapDispatchToProps = {
+  ...PostListActions,
+  ...UserLoginActions
+};
+
 export default withRouter(
-  connect(null, PostListActions)(AddFormContainer)
+  connect(mapStateToProps, mapDispatchToProps)(AddFormContainer)
 )

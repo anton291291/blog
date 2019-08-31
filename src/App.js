@@ -1,10 +1,29 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 
-import {NotFound,} from './components/index';
-import {PostList, FullPost, HeaderBlock, AddForm,PostEditor,UserLogin} from './moduls/index'
+import store from './store';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './core/setAuthToken';
 
-function App() {
+import UserLoginActions from './moduls/UserLogin/actions';
+
+import {NotFound} from './components/index';
+import {PostList, FullPost,AddForm,PostEditor, UserRegister} from './moduls/index'
+
+if(localStorage.jwtToken) {
+  setAuthToken(localStorage.jwtToken);
+  const decoded = jwt_decode(localStorage.jwtToken);
+  store.dispatch(UserLoginActions.setCurrentUser(decoded));
+
+  const currentTime = Date.now() / 1000;
+  if(decoded.exp < currentTime) {
+    store.dispatch(UserLoginActions.logoutUser());
+    window.location.href = '/posts'
+  }
+}
+
+
+const  App = () => {
   return (
     <div className="App">
       <Router>
@@ -31,11 +50,7 @@ function App() {
                 exact
                 component={PostEditor}
               />
-              <Route
-                path="/api/users/login"
-                exact
-                component={UserLogin}
-              />
+            <Route exact path="/register" component={ UserRegister } />
               <Route
                 path="*"
                 component={NotFound}

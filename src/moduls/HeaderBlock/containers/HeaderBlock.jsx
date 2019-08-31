@@ -1,25 +1,39 @@
 import React,{useState} from 'react';
-import {HeaderBlock,UserLogin} from '../../../components/index';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 
+import {UserLogin} from '../../index';
+import {HeaderBlock} from '../../../components/index';
+
+import UserLoginActions from '../../UserLogin/actions';
+
 const HeaderBlockContainer = (props) => {
 
-    const [modal,setModal] = useState(false);
+  const {isAuthenticated,logoutUser,history,toggleModal,isModalOn} = props;
 
   return (
     <>
-      <HeaderBlock onClick={() => {setModal(!modal)}}/>
-      {modal ? <UserLogin/>: null}
+      <HeaderBlock
+        {...props}
+        isAuthenticated={isAuthenticated}
+        onClick={() => {toggleModal(!isModalOn)}}
+        onLogout={() => {
+          logoutUser(history)
+        }}/>
+      {isModalOn ? <UserLogin/>: null}
     </>
       );
 };
 
-const mapStateToProps = ({posts},{location: {pathname}}) => {
+const mapStateToProps = ({posts,modal},{location: {pathname}}) => {
+    console.log(modal);
   const id = pathname.split('/posts/')[1];
-  return posts.posts.filter(post => post._id === id)[0];
+  return {
+    ...posts.posts.filter(post => post._id === id)[0],
+    ...modal,
+  }
 };
 
 export default withRouter(
-  connect(mapStateToProps)(HeaderBlockContainer)
+  connect(mapStateToProps, UserLoginActions)(HeaderBlockContainer)
 );

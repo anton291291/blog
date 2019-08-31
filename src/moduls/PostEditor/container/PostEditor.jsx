@@ -4,6 +4,7 @@ import {withRouter} from 'react-router';
 
 import {AddForm, HeaderBlock} from '../../../components/index';
 import PostListActions from '../../PostList/actions';
+import UserLoginActions from '../../UserLogin/actions';
 import {PostApi} from '../../../utils/api';
 
 const PostEditorContainer = (props) => {
@@ -28,7 +29,7 @@ const PostEditorContainer = (props) => {
 
   return (
     <>
-      <HeaderBlock/>
+      <HeaderBlock {...props}/>
       <AddForm
       title={titleNode}
       imageUrl={imageUrlNode}
@@ -54,11 +55,17 @@ const PostEditorContainer = (props) => {
 };
 
 
-const mapStateToProps = ({posts},{match: {params:{id}}}) => {
-  return posts.posts.filter(item => item._id === id)[0]
+const mapStateToProps = ({posts,auth},{match: {params:{id}}}) => {
+  return {...posts.posts.filter(item => item._id === id)[0],
+    ...auth}
   console.log(posts);
 };
 
+const mapDispatchToProps = {
+  ...PostListActions,
+  ...UserLoginActions
+};
+
 export default withRouter(
-  connect(mapStateToProps,PostListActions)(PostEditorContainer)
+  connect(mapStateToProps,mapDispatchToProps)(PostEditorContainer)
 )

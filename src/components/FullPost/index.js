@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import moment from 'moment';
 import 'moment/locale/ru'
 
+import  ArrowBack  from '@material-ui/icons/ArrowBack';
 import "./FullPost.scss"
 import ScrollAnimation from 'react-animate-on-scroll';
 
@@ -20,8 +21,10 @@ const FullPost = ({text,createdAt}) => {
     <div className="full-post">
       <div className="container">
         <Link to="/">
-          <Button variant="contained" color="secondary" size="medium">
-            Назад
+          <Button variant="contained" color="secondary"
+            size="small"
+            className="full-post__button--back" >
+            <ArrowBack/>
           </Button>
         </Link>
         <div className="full-post__details">

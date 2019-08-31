@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
+import  ArrowBack  from '@material-ui/icons/ArrowBack';
 
 import "./AddForm.scss";
 import ScrollAnimation from 'react-animate-on-scroll';
@@ -13,7 +14,6 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: "column",
-    flexWrap: 'wrap',
   },
   textField: {
     marginLeft: theme.spacing(0),
@@ -23,15 +23,14 @@ const useStyles = makeStyles(theme => ({
    marginLeft: theme.spacing(1),
  },
  button: {
-    marginTop: theme.spacing(1),
-    left: '42%'
+    margin:" 20px auto",
   }
 }));
 
 const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage, _id}) => {
 
   const classes = useStyles();
-console.log(text);
+
   return (
     <div className="form-block">
       <ScrollAnimation
@@ -39,8 +38,10 @@ console.log(text);
         duration={2}
       >
         <Link to="/">
-          <Button variant="contained" color="secondary" size="medium">
-            Назад
+          <Button variant="contained" color="secondary"
+            size="small"
+            className="form-block__button--back" >
+            <ArrowBack/>
           </Button>
         </Link>
         <form className={classes.container} noValidate autoComplete="off">
@@ -75,7 +76,6 @@ console.log(text);
             value={text}
             onChange={onChangeText}
           />
-          </form >
           <Button variant="contained"
             color="primary"
             className={classes.button}
@@ -84,6 +84,8 @@ console.log(text);
             Запостить
             <Icon className={classes.rightIcon}>send</Icon>
           </Button>
+          </form >
+
         </ScrollAnimation>
     </div>
 );

@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
    }
 }));
 
-const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, emailValid, passwordValid,emailError,passwordError}) => {
+const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, emailValid, passwordValid,emailError,passwordError,onClick}) => {
 
    const classes = useStyles();
 
@@ -30,7 +30,10 @@ const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, em
 
       <div className="login-block">
         <form className={classes.container}  autoComplete="on">
+          <span onClick={onClick}
+          class="login-block__close">×</span>
           <TextField
+            autoFocus="true"
             id="outlined-email-input"
             label="Email"
             className={classes.textField}

@@ -5,5 +5,6 @@ import PostList from './PostList'
 import FullPost from './FullPost';
 import NotFound from './NotFound';
 import UserLogin from './UserLogin'
+import UserRegister from './UserRegister';
 
-export {Postitem,HeaderBlock,AddForm,PostList,FullPost, NotFound, UserLogin};
+export {Postitem,HeaderBlock,AddForm,PostList,FullPost, NotFound, UserLogin, UserRegister};

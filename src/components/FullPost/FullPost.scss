@@ -2,9 +2,7 @@
 
   margin-top: 30px;
 
-  .container {
-    width: 1000px;
-  }
+  
 
   &__title {
     margin-top: 20px;
@@ -19,5 +17,10 @@
   &__details {
     margin-top: 5px;
     opacity: 0.5;
+  }
+
+  &__button--back {
+    margin-left: 8px;
+    padding: 0px;
   }
 }

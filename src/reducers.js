@@ -1,9 +1,13 @@
 import {combineReducers} from 'redux'
 
 import posts from './moduls/PostList/reducer';
-import auth from './moduls/UserLogin/reducer';
+import errorReducer from './moduls/UserLogin/reducers/errorReducer';
+import authReducer from './moduls/UserLogin/reducers/authReducer';
+import modalReducer from './moduls/UserLogin/reducers/modalReducer';
 
 export default combineReducers({
   posts,
-  errors: auth
+  errors: errorReducer,
+  auth: authReducer,
+  modal: modalReducer,
 });
