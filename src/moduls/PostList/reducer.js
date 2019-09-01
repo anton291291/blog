@@ -12,12 +12,11 @@ export default function (state = initialState, action) {
         ...state,
         posts:payload,
       };
-      case 'POSTS:WATCH_POST':
+      case 'POSTS:SEARCH_POSTS':
         return {
             ...state,
-            posts: [
-              ...state.posts, payload
-            ]
+            posts:  payload
+            
       };
       case 'POSTS:DELETE_POST':
         return {

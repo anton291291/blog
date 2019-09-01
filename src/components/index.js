@@ -6,5 +6,6 @@ import FullPost from './FullPost';
 import NotFound from './NotFound';
 import UserLogin from './UserLogin'
 import UserRegister from './UserRegister';
+import SearchInput from './SearchInput';
 
-export {Postitem,HeaderBlock,AddForm,PostList,FullPost, NotFound, UserLogin, UserRegister};
+export {SearchInput,Postitem,HeaderBlock,AddForm,PostList,FullPost, NotFound, UserLogin, UserRegister};

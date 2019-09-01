@@ -33,7 +33,8 @@ const UserRegister = (props) => {
 
   const {onSubmit,email,password, onChangeEmail, onChangePassword,
    emailValid, passwordValid,emailError,passwordError,name,nameError,
-   nameValid,onChangeName, passwordConfirm, passwordConfirmError, passwordConfirmValid, onChangePasswordConfirm}= props;
+   nameValid,onChangeName, passwordConfirm, passwordConfirmError,
+   deleteLoginError, passwordConfirmValid, onChangePasswordConfirm}= props;
 
    const classes = useStyles();
 
@@ -43,9 +44,12 @@ const UserRegister = (props) => {
       duration={2}>
       <div className="register-block">
         <Link to="/">
-          <Button variant="contained" color="secondary"
+          <Button
+            variant="contained"
+            color="secondary"
             size="small"
-            className={classes.button__back} >
+            className={classes.button__back}
+            onClick={deleteLoginError} >
             <ArrowBack/>
           </Button>
         </Link>
@@ -63,7 +67,7 @@ const UserRegister = (props) => {
             onChange={onChangeName}
             error={nameError}
           />
-          <span className="errors">{nameValid}</span>
+        <span className="register-block__errors">{nameValid}</span>
           <TextField
             id="outlined-email-input"
             label="Email"
@@ -77,7 +81,7 @@ const UserRegister = (props) => {
             onChange={onChangeEmail}
             error={emailError}
           />
-          <span className="errors">{emailValid}</span>
+        <span className="register-block__errors">{emailValid}</span>
           <TextField
             id="outlined-password-input"
             label="Пароль"
@@ -88,7 +92,7 @@ const UserRegister = (props) => {
             onChange={onChangePassword}
             error={passwordError}
           />
-          <span className="errors">{passwordValid}</span>
+        <span className="register-block__errors">{passwordValid}</span>
           <TextField
             id="outlined-password-input"
             label="Подтвердите пароль"
@@ -100,7 +104,7 @@ const UserRegister = (props) => {
             onChange={onChangePasswordConfirm}
             error={passwordConfirmError}
           />
-          <span className="errors">{passwordConfirmValid}</span>
+        <span className="register-block__errors">{passwordConfirmValid}</span>
           <Button variant="contained"
             color="primary"
             className={classes.button}

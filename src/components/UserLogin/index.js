@@ -45,8 +45,9 @@ const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, em
             value={email}
             onChange={onChangeEmail}
             error={emailError}
+            onKeyPress={onSubmit}
           />
-          <span className="errors">{emailValid}</span>
+        <span className="login-block__errors">{emailValid}</span>
           <TextField
             id="outlined-password-input"
             label="Password"
@@ -57,8 +58,9 @@ const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, em
             value={password}
             onChange={onChangePassword}
             error={passwordError}
+            onKeyPress={onSubmit}
           />
-          <span className="errors">{passwordValid}</span>
+        <span className="login-block__errors">{passwordValid}</span>
           <Button variant="contained"
             color="primary"
             className={classes.button}

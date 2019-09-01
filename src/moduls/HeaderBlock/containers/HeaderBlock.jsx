@@ -6,6 +6,7 @@ import {UserLogin} from '../../index';
 import {HeaderBlock} from '../../../components/index';
 
 import UserLoginActions from '../../UserLogin/actions';
+import PostListActions from '../../PostList/actions';
 
 const HeaderBlockContainer = (props) => {
 
@@ -34,6 +35,11 @@ const mapStateToProps = ({posts,modal},{location: {pathname}}) => {
   }
 };
 
+const mapDispatchToProps = {
+  ...PostListActions,
+  ...UserLoginActions
+};
+
 export default withRouter(
-  connect(mapStateToProps, UserLoginActions)(HeaderBlockContainer)
+  connect(mapStateToProps, mapDispatchToProps)(HeaderBlockContainer)
 );

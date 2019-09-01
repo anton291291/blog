@@ -8,10 +8,10 @@ const PostListActions = {
     }
   },
 
-  watchPost: (post) => {
+  searchPosts: (posts) => {
     return {
-      type: "POSTS:WATCH_POST",
-      payload: post
+      type: "POSTS:SEARCH_POSTS",
+      payload: posts
     }
   },
 
@@ -43,18 +43,17 @@ preloaderOff: (bool) => {
 }
 },
 
+  fetchSearchPosts: (query) => dispatch => {
+    PostApi.getSearch(query)
+    .then(({data}) => {
+      dispatch(PostListActions.searchPosts(data))})
+  },
 
   fetchDeletePost: (id) => dispatch => {
     if (global.confirm('Вы точно хотите удалить этот пост?')) {
       dispatch(PostListActions.deletePost(id));
       PostApi.delete(id);
     };
-  },
-
-  fetchPost: (id) => dispatch => {
-    PostApi.get(id).then(({data}) => {
-      dispatch(PostListActions.watchPost(data))
-    })
   },
 
   fetchPosts: () => dispatch => {

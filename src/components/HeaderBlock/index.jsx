@@ -3,22 +3,27 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ScrollAnimation from 'react-animate-on-scroll';
 
+import {SearchInput} from '../index';
 
 import "./HeaderBlock.scss";
 
 
 const useStyles = makeStyles(theme => ({
   button: {
-    margin: theme.spacing(1),
+    boxShadow: 'none',
     position: "relative",
     zIndex: "99",
     top: "-150px",
     left: "-20px",
+    fontSize: "10px",
+    borderRadius: '0',
+    width: '100px'
   },
 }));
 
-const HeaderBlock = ({title, imageUrl,onClick,isAuthenticated,onLogout,history}) => {
+const HeaderBlock = (props) => {
 
+  const {title, imageUrl,onClick,isAuthenticated,onLogout,history, fetchSearchPosts}= props;
   const classes = useStyles();
 
   return (
@@ -29,6 +34,7 @@ const HeaderBlock = ({title, imageUrl,onClick,isAuthenticated,onLogout,history})
     >
       <div className="header-block" style={{backgroundImage: `url(${imageUrl})`}}>
         <div className="container">
+          <SearchInput {...props}/>
           {!isAuthenticated
            ? <Button
             variant="contained"
@@ -37,9 +43,9 @@ const HeaderBlock = ({title, imageUrl,onClick,isAuthenticated,onLogout,history})
               history.push('/register')
             }}
             className={classes.button}>
-            Зарегистрироваться
+            Регистрация
           </Button>
-            : null
+            : <Button className={classes.button} disabled/>
           }
           {isAuthenticated
             ?

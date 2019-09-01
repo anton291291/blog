@@ -6,7 +6,7 @@ import {UserRegister} from '../../../components';
 
 const UserRegisterContainer = (props) => {
 
-  const {registerUser, payload,isModalOn,history, isAuthenticated} = props;
+  const {registerUser, payload,isModalOn,history, isAuthenticated,deleteLoginError} = props;
 
   useEffect(() => {
     isAuthenticated ? history.push('/posts') : console.log('good');
@@ -25,6 +25,8 @@ const UserRegisterContainer = (props) => {
 
   return (
     <UserRegister
+      deleteLoginError={deleteLoginError}
+
       name={name}
       nameError={payload !== undefined && payload.hasOwnProperty('name') ? true : false}
       nameValid={payload === undefined ? null : payload.name}

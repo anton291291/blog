@@ -26,7 +26,7 @@ const PostList = ({posts,onRemove,isAuthenticated}) => {
       {isAuthenticated
         ?
         <ScrollAnimation
-          animateIn='bounce'
+          animateIn='fadeIn'
           duration={3}
           delay={1000}
           animateOnce={true} >

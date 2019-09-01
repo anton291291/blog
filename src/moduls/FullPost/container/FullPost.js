@@ -30,11 +30,10 @@ const FullPostContainer = (props) => {
 };
 
 const mapStateToProps = ({posts, auth},{match: {params:{id}}}) => {
-  console.log(auth);
   return {
     posts: posts.posts.filter(post => post._id === id)[Array.length - 1],
     isLoading: posts.isLoading,
-    isAuthenticated: {...auth.isAuthenticated}
+    isAuthenticated: auth.isAuthenticated
   }
 };
 

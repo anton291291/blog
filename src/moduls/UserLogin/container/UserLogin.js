@@ -25,9 +25,9 @@ const UserLoginContainer = (props) => {
       }}
       email={email}
       emailValid={payload === undefined ? null : payload.email}
-      emailError={payload !== undefined && payload.hasOwnProperty('error') ? true : false}
-      passwordError={payload === undefined ? false : true}
-      passwordValid={payload !== undefined && payload.hasOwnProperty('password') ? true : false}
+      emailError={payload !== undefined && payload.hasOwnProperty('email') ? true : false}
+      passwordError={payload !== undefined && payload.hasOwnProperty('password') ? true : false}
+      passwordValid={payload === undefined ? null : payload.password}
       password={password}
       onSubmit={() => {
         loginUser(loginData,!isModalOn)
