@@ -1,5 +1,6 @@
 const initialState = {
   posts: [],
+  isFiltered: false,
   isLoading: false,
 };
 
@@ -11,12 +12,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts:payload,
+        isFiltered: false
       };
       case 'POSTS:SEARCH_POSTS':
         return {
             ...state,
-            posts:  payload
-            
+            posts:  payload,
+            isFiltered: true,
+
       };
       case 'POSTS:DELETE_POST':
         return {

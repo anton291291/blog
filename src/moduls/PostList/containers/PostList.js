@@ -10,10 +10,10 @@ import UserLoginActions from '../../UserLogin/actions'
 
 const PostListContainer = (props) => {
 
-  const {fetchPosts, fetchDeletePost,isLoading, isAuthenticated, user} = props;
+  const {fetchPosts, fetchDeletePost,isLoading, isAuthenticated, user, isFiltered} = props;
 
 useEffect(() => {
-  fetchPosts();
+  isFiltered ? console.log('good') :fetchPosts();
 },[]);
 
   return (

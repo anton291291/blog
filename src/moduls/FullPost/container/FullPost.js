@@ -10,10 +10,11 @@ import UserLoginActions from '../../UserLogin/actions';
 
 const FullPostContainer = (props) => {
 
-  const {fetchPosts, isLoading} = props;
+  const {fetchPosts, isLoading, isFiltered} = props;
 
   useEffect(() => {
-    fetchPosts();
+    isFiltered ? console.log('good') :
+     fetchPosts();
   },[]);
 
   return (
@@ -33,7 +34,8 @@ const mapStateToProps = ({posts, auth},{match: {params:{id}}}) => {
   return {
     posts: posts.posts.filter(post => post._id === id)[Array.length - 1],
     isLoading: posts.isLoading,
-    isAuthenticated: auth.isAuthenticated
+    isAuthenticated: auth.isAuthenticated,
+    isFiltered: posts.isFiltered,
   }
 };
 

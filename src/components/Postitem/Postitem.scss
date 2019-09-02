@@ -1,5 +1,4 @@
 .post-item {
-  padding-bottom: 30px;
   margin-bottom: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   a {
@@ -22,4 +21,10 @@
     border-top: 1px solid rgba(0, 0, 0, .1);
     padding-top: 30px;
   }
+
+  p,i {
+    font-family: 'Noto Serif TC', serif;
+    width: 50vw;
+  }
+
 }

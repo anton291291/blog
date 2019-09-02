@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
   button: {
      width: "10px",
      margin:" 10px auto",
+     borderRadius: "0"
 
    }
 }));
@@ -29,7 +30,7 @@ const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, em
   return (
 
       <div className="login-block">
-        <form className={classes.container}  autoComplete="on">
+        <form className={classes.container}>
           <span onClick={onClick}
           class="login-block__close">×</span>
           <TextField
@@ -45,12 +46,11 @@ const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, em
             value={email}
             onChange={onChangeEmail}
             error={emailError}
-            onKeyPress={onSubmit}
           />
         <span className="login-block__errors">{emailValid}</span>
           <TextField
             id="outlined-password-input"
-            label="Password"
+            label="Пароль"
             className={classes.textField}
             type="password"
             margin="normal"
@@ -58,7 +58,6 @@ const UserLogin = ({onSubmit,email,password, onChangeEmail, onChangePassword, em
             value={password}
             onChange={onChangePassword}
             error={passwordError}
-            onKeyPress={onSubmit}
           />
         <span className="login-block__errors">{passwordValid}</span>
           <Button variant="contained"

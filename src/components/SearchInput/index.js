@@ -17,9 +17,9 @@ const useStyles = makeStyles(theme => ({
     top: '-121px',
     left: '180px',
     fontSize: "10px",
-    backgroundColor: fade(theme.palette.common.white, 0.45),
+    backgroundColor: fade(theme.palette.common.white, 0.6),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.65),
+      backgroundColor: fade(theme.palette.common.white, 0.85),
     },
 
   },
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
-    width: '70%',
+    width: '90%',
   },
 }));
 
@@ -45,25 +45,24 @@ const useStyles = makeStyles(theme => ({
 const SearchInput = ({fetchSearchPosts}) => {
    const classes = useStyles();
 
-
   return (
     <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              onKeyPress={(e) => {
-                fetchSearchPosts(e.target.value)
-                console.log(e.target.value);
-              }}
-              placeholder="поиск…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+      <div className={classes.searchIcon}>
+        <SearchIcon />
+      </div>
+      <InputBase
+        onKeyUp={(e) => {
+          fetchSearchPosts(e.target.value)
+          console.log(e.target.value);
+        }}
+        placeholder="поиск…"
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        inputProps={{ 'aria-label': 'search' }}
+      />
+    </div>
   );
 };
 

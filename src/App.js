@@ -50,11 +50,13 @@ const  App = () => {
                 exact
                 component={PostEditor}
               />
-            <Route exact path="/register" component={ UserRegister } />
+              <Route exact path="/register"
+                component={ UserRegister }
+              />
               <Route
                 path="*"
                 component={NotFound}
-                  />
+              />
                   </Switch>
           </div>
         </div>

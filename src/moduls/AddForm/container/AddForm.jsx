@@ -54,7 +54,6 @@ const AddFormContainer = (props) => {
 };
 
 const mapStateToProps = ({auth}) => {
-  console.log(auth);
   return {
     isAuthenticated: {...auth.isAuthenticated}
   }

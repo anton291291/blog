@@ -24,6 +24,8 @@ const useStyles = makeStyles(theme => ({
  },
  button: {
     margin:" 20px auto",
+    borderRadius: '0',
+    fontSize: "10px"
   }
 }));
 
@@ -40,7 +42,7 @@ const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,on
         <Link to="/">
           <Button variant="contained" color="secondary"
             size="small"
-            className="form-block__button--back" >
+            className={classes.button} >
             <ArrowBack/>
           </Button>
         </Link>

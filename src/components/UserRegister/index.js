@@ -18,14 +18,16 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
   },
   button: {
-     width: "130px",
-     margin:" 20px auto",
-     fontSize: "10px"
+    margin:" 20px auto",
+    borderRadius: '0',
+    fontSize: "10px"
    },
 
   button__back: {
-    marginLeft: "8px",
-    padding: "0px"
+    margin:" 10px auto",
+    borderRadius: '0',
+    fontSize: "10px",
+
   }
 }));
 

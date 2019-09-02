@@ -14,27 +14,26 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(theme => ({
   fab: {
-    marginLeft: "40px",
-    marginBottom: "8px",
-    position: "absolute",
-    marginTop: "-28px"
+    position: "relative",
+    marginTop: "-85px",
   },
 
   deleteBlock: {
-    left: "60%"
+    left: "60vw"
   },
 
   editBlock: {
-    left: "50%"
+    left: "55vw"
   }
 }));
 
-const Postitem = ({title,createdAt,_id,onRemove,isAuthenticated}) => {
+const Postitem = ({title,createdAt,_id,onRemove,isAuthenticated, isFiltered}) => {
   const classes = useStyles();
 
   moment.locale('ru');
 
   return (
+
     <div className="post-item">
       <ScrollAnimation
         animateIn='fadeIn'
@@ -52,7 +51,7 @@ const Postitem = ({title,createdAt,_id,onRemove,isAuthenticated}) => {
             <ScrollAnimation
               animateIn='fadeIn'
               duration={2.5}
-              offset={50}
+              offset={1}
             >
             <Link to={`/posts/${_id}/edit`}>
               <Fab color="secondary"
