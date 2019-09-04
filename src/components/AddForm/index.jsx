@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage, _id}) => {
 
+
   const classes = useStyles();
 
   return (

@@ -58,10 +58,9 @@ preloaderOff: (bool) => {
 
   fetchPosts: () => dispatch => {
     dispatch(PostListActions.preloaderOn());
-
     PostApi.get().then(({data}) => {
-      dispatch(PostListActions.showPosts(data))
-    }).then(() => dispatch(PostListActions.preloaderOff()));
+      dispatch(PostListActions.showPosts(data));
+    }).then(() => dispatch(PostListActions.preloaderOff())) ; 
   },
 
 };
