@@ -10,10 +10,10 @@ import UserLoginActions from '../../UserLogin/actions'
 
 const PostListContainer = (props) => {
 
-  const {fetchPosts, fetchDeletePost,isLoading, isAuthenticated, user, isFiltered} = props;
+  const {fetchPosts, fetchDeletePost,isLoading, isAuthenticated, isFiltered} = props;
 
 useEffect(() => {
-  isFiltered ? console.log('good') :fetchPosts();
+  isFiltered ? console.log() :fetchPosts();
 },[]);
 
   return (
@@ -23,14 +23,22 @@ useEffect(() => {
         isAuthenticated={isAuthenticated}
       />
       <PostList {...props}
-        onRemove={fetchDeletePost}/>
+        onRemoveSearch={() => {
+          fetchPosts();
+          sessionStorage.setItem('search','')
+        }}
+        onRemovePost={fetchDeletePost}
+        onRemoveSessionStorage={() => {
+          sessionStorage.setItem('search','')
+        }}
+      />
     </>
        :
       <HollowDotsSpinner
         color='#f50057'
         size='30'
         animationDuration='1000'
-        className="preloader"
+        className='preloader'
       />
      )
 };

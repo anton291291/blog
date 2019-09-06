@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ScrollAnimation from 'react-animate-on-scroll';
 
-import {SearchInput} from '../index';
+import {SearchInput} from '../../moduls';
 
 import "./HeaderBlock.scss";
 
@@ -13,8 +13,6 @@ const useStyles = makeStyles(theme => ({
     boxShadow: 'none',
     position: "relative",
     zIndex: "99",
-    top: "-150px",
-    left: "-20px",
     fontSize: "10px",
     borderRadius: '0',
     width: '100px'
@@ -23,48 +21,53 @@ const useStyles = makeStyles(theme => ({
 
 const HeaderBlock = (props) => {
 
-  const {title, imageUrl,onClick,isAuthenticated,onLogout,history, fetchSearchPosts}= props;
+  const {title, imageUrl,onClick,isAuthenticated,fetchPosts,modalOn,onLogout,history}= props;
   const classes = useStyles();
 
   return (
+
     <ScrollAnimation
       animateIn='fadeIn'
       duration={3}
       animateOnce={true}
     >
       <div className="header-block" style={{backgroundImage: `url(${imageUrl})`}}>
-        <div className="container">
-          <SearchInput {...props}/>
-          {!isAuthenticated
-           ? <Button
+        <span className="header-block__buttons">
+        {!isAuthenticated
+         ? <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            history.push('/register')
+            fetchPosts()
+            modalOn(false)
+          }}
+          className={classes.button}>
+          Регистрация
+        </Button>
+          : null
+        }
+        {isAuthenticated
+          ?
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={onLogout}
+            className={classes.button}>
+            Выйти
+          </Button>
+          :
+          <Button
             variant="contained"
             color="primary"
-            onClick={() => {
-              history.push('/register')
-            }}
+            onClick={onClick}
             className={classes.button}>
-            Регистрация
+            Войти
           </Button>
-            : <Button className={classes.button} disabled/>
-          }
-          {isAuthenticated
-            ?
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={onLogout}
-              className={classes.button}>
-              Выйти
-            </Button>
-            :
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={onClick}
-              className={classes.button}>
-              Войти
-            </Button>
         }
+        <SearchInput {...props}/>
+        </span>
+        <div className="container">
           <div className="header-block__overlay"></div>
           <div className="header-block__center">
             <h1>{title}</h1>

@@ -1,0 +1,23 @@
+@import '~bootstrap/scss/bootstrap';
+
+.toolbar {
+  border: 1px solid rgba(0,0,0, .25);
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  height: 30px;
+  margin-top: 30px;
+}
+
+.spacer {
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.fa {
+  display: flex;
+  align-self: center;
+}

@@ -10,22 +10,32 @@ import UserLoginActions from '../../UserLogin/actions';
 
 const FullPostContainer = (props) => {
 
-  const {fetchPosts, isLoading, isFiltered} = props;
+  const {fetchPosts, isLoading, isFiltered, history} = props;
 
   useEffect(() => {
-    isFiltered ? console.log('good') :
-     fetchPosts();
-  },[]);
+      if (sessionStorage.getItem('search').length > 0 ) {
+        history.push('/posts')
+      }
+  },[sessionStorage.getItem('search')]);
+
+  useEffect(() => {
+    if (!isFiltered ) {
+      fetchPosts();}
+  },[])
 
   return (
-    !isLoading ?
-      <> <HeaderBlock {...props} /> <FullPost {...props.posts}/> </>
+    !isLoading
+    ?
+      <>
+        <HeaderBlock {...props} />
+        <FullPost {...props.posts}/>
+      </>
     :
       <HollowDotsSpinner
         color='#f50057'
         size='30'
         animationDuration='1000'
-        className="preloader"
+        className='preloader'
       />
   )
 };

@@ -1,8 +1,9 @@
-import React, {useEffect,useState, useReducer} from 'react';
+import React, {useEffect,useState} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 
-import {AddForm, HeaderBlock} from '../../../components/index';
+import {AddForm} from '../../../components/index';
+import {HeaderBlock} from '../../index';
 import PostListActions from '../../PostList/actions';
 import UserLoginActions from '../../UserLogin/actions';
 import {PostApi} from '../../../utils/api';
@@ -11,7 +12,18 @@ import {HollowDotsSpinner} from 'react-epic-spinners';
 
 const PostEditorContainer = (props) => {
 
-  const {fetchPosts,_id,text,title,imageUrl,history, isLoading} = props;
+  const {fetchPosts,_id,text,title,imageUrl,
+    history, isLoading, isAuthenticated} = props;
+
+  useEffect(() => {
+    !isAuthenticated ?  history.push('/posts') : console.log('ok');
+  },[isAuthenticated]);
+
+  useEffect(() => {
+      if (sessionStorage.getItem('search').length > 0 ) {
+        history.push('/posts')
+      }
+  },[sessionStorage.getItem('search')]);
 
   const [textNode,setText] = useState(text);
   const [titleNode,setTitle] = useState(title);
@@ -47,6 +59,7 @@ const PostEditorContainer = (props) => {
     <>
       <HeaderBlock {...props}/>
       <AddForm
+        {...props}
         title={titleNode}
         imageUrl={imageUrlNode}
         text={textNode}
@@ -60,10 +73,11 @@ const PostEditorContainer = (props) => {
           setTitle(e.target.value)
         }
         onSubmit={() => {
+          console.log(updateData);
           PostApi.put(_id,updateData)
           setTimeout(() => {
             history.push(`/posts/${_id}`)
-          }, 2000)
+          }, 1000)
         }}
       />
    </>

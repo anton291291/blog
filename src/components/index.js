@@ -7,5 +7,6 @@ import NotFound from './NotFound';
 import UserLogin from './UserLogin'
 import UserRegister from './UserRegister';
 import SearchInput from './SearchInput';
+import ToolsBar from './ToolsBar';
 
-export {SearchInput,Postitem,HeaderBlock,AddForm,PostList,FullPost, NotFound, UserLogin, UserRegister};
+export {ToolsBar,SearchInput,Postitem,HeaderBlock,AddForm,PostList,FullPost, NotFound, UserLogin, UserRegister};

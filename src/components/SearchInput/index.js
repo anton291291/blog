@@ -7,15 +7,10 @@ import SearchIcon from '@material-ui/icons/Search';
 
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
+
   search: {
     zIndex: '99',
-    width: '300px',
     position: 'relative',
-    top: '-121px',
-    left: '180px',
     fontSize: "10px",
     backgroundColor: fade(theme.palette.common.white, 0.6),
     '&:hover': {
@@ -42,8 +37,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SearchInput = ({fetchSearchPosts}) => {
-   const classes = useStyles();
+const SearchInput = ({onKeyUp, value, onChange}) => {
+  const classes = useStyles();
 
   return (
     <div className={classes.search}>
@@ -51,10 +46,10 @@ const SearchInput = ({fetchSearchPosts}) => {
         <SearchIcon />
       </div>
       <InputBase
-        onKeyUp={(e) => {
-          fetchSearchPosts(e.target.value)
-          console.log(e.target.value);
-        }}
+        autoFocus
+        value={value}
+        onChange={onChange}
+        onKeyUp={onKeyUp}
         placeholder="поиск…"
         classes={{
           root: classes.inputRoot,

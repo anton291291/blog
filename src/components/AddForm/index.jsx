@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import  ArrowBack  from '@material-ui/icons/ArrowBack';
+import {ToolsBar} from '../index';
 
 import "./AddForm.scss";
 import ScrollAnimation from 'react-animate-on-scroll';
@@ -14,10 +15,6 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: "column",
-  },
-  textField: {
-    marginLeft: theme.spacing(0),
-    marginRight: theme.spacing(1),
   },
   rightIcon: {
    marginLeft: theme.spacing(1),
@@ -29,8 +26,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,onChangeImage, _id}) => {
+const AddForm = (props) => {
 
+  const { title, text, imageUrl,onSubmit,onChangeText,
+    onChangeTitle,onChangeImage}= props;
 
   const classes = useStyles();
 
@@ -47,7 +46,7 @@ const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,on
             <ArrowBack/>
           </Button>
         </Link>
-        <form className={classes.container} noValidate autoComplete="off">
+        <form className={classes.container}>
           <TextField
             id="outlined-email-input"
             label="Линк на картинку"
@@ -66,6 +65,7 @@ const AddForm = ({ title, text, imageUrl,onSubmit,onChangeText, onChangeTitle,on
             value={title}
             onChange={onChangeTitle}
           />
+          <ToolsBar/>
           <TextField
             id="outlined-textarea"
             label="Текст поста"

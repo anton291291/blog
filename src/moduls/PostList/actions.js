@@ -11,7 +11,7 @@ const PostListActions = {
   searchPosts: (posts) => {
     return {
       type: "POSTS:SEARCH_POSTS",
-      payload: posts
+      payload: posts,
     }
   },
 
@@ -43,10 +43,11 @@ preloaderOff: (bool) => {
 }
 },
 
-  fetchSearchPosts: (query) => dispatch => {
+  fetchSearchPosts: (query,char) => dispatch => {
     PostApi.getSearch(query)
     .then(({data}) => {
-      dispatch(PostListActions.searchPosts(data))})
+      dispatch(PostListActions.searchPosts(data))
+    })
   },
 
   fetchDeletePost: (id) => dispatch => {
@@ -60,7 +61,7 @@ preloaderOff: (bool) => {
     dispatch(PostListActions.preloaderOn());
     PostApi.get().then(({data}) => {
       dispatch(PostListActions.showPosts(data));
-    }).then(() => dispatch(PostListActions.preloaderOff())) ; 
+    }).then(() => dispatch(PostListActions.preloaderOff())) ;
   },
 
 };

@@ -26,7 +26,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const PostList = ({posts,onRemove,isAuthenticated,isFiltered,fetchPosts}) => {
+const PostList = (props) => {
+
+  const {posts,isAuthenticated,isFiltered,onRemoveSearch, onRemoveSessionStorage}= props;
 
   const classes = useStyles();
 
@@ -40,7 +42,11 @@ const PostList = ({posts,onRemove,isAuthenticated,isFiltered,fetchPosts}) => {
             delay={1000}
             animateOnce={true} >
             <Link to="/editor">
-              <Fab color="primary" aria-label="add" className={classes.fab}>
+              <Fab
+                onClick={onRemoveSessionStorage}
+                color="primary"
+                aria-label="add"
+                className={classes.fab}>
                 <AddIcon />
               </Fab>
             </Link>
@@ -63,7 +69,7 @@ const PostList = ({posts,onRemove,isAuthenticated,isFiltered,fetchPosts}) => {
               <Button variant="contained" color="secondary"
                 size="small"
                 className={classes.button}
-                onClick={fetchPosts}
+                onClick={onRemoveSearch}
               >
                 <Cancel/> сбросить
               </Button>
@@ -76,9 +82,7 @@ const PostList = ({posts,onRemove,isAuthenticated,isFiltered,fetchPosts}) => {
           {
             posts.map((post) => {
               return <Postitem {...post} key={post._id}
-                isAuthenticated={isAuthenticated}
-                isFiltered={isFiltered}
-                 onRemove={onRemove}/>
+                {...props}/>
             })
           }
         </div>

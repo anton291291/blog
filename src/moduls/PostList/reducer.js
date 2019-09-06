@@ -2,6 +2,7 @@ const initialState = {
   posts: [],
   isFiltered: false,
   isLoading: false,
+  savedSearchChars: ''
 };
 
 export default function (state = initialState, action) {

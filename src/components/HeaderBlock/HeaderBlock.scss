@@ -1,13 +1,21 @@
 .header-block {
   align-items: center;
+  box-shadow: 3px 7px 23px -5px rgba(0,0,0,0.55);
   justify-content: center;
   display: flex;
-  height: 350px;
+  height: 65vh;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   position: relative;
   background-position: center;
   background-size: cover;
+
+  &__buttons {
+    display: flex;
+    align-self: flex-start;
+    position: absolute;
+    left: 0;
+  }
 
   h1 {
     color: #fff;

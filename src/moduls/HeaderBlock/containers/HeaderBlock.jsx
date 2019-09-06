@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useEffect} from 'react';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 
@@ -11,6 +11,7 @@ import PostListActions from '../../PostList/actions';
 const HeaderBlockContainer = (props) => {
 
   const {isAuthenticated,logoutUser,history,toggleModal,isModalOn} = props;
+
 
   return (
     <>
@@ -27,11 +28,12 @@ const HeaderBlockContainer = (props) => {
 };
 
 const mapStateToProps = ({posts,modal},{location: {pathname}}) => {
-    console.log(modal);
   const id = pathname.split('/posts/')[1];
   return {
     ...posts.posts.filter(post => post._id === id)[0],
+    ...posts,
     ...modal,
+
   }
 };
 
