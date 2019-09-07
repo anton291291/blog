@@ -89,6 +89,7 @@ const UserRegister = (props) => {
             id='outlined-password-input'
             label='Пароль'
             className={classes.textField}
+            type='password'
             margin='normal'
             variant='outlined'
             value={password}

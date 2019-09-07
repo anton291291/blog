@@ -10,13 +10,17 @@ import UserAuthActions from '../../UserLogin/actions';
 
 const FullPostContainer = (props) => {
 
-  const {fetchPosts, isLoading, isFiltered, history} = props;
+  const {modalOn,fetchPosts, isLoading, isFiltered, history} = props;
 
   useEffect(() => {
       if (sessionStorage.getItem('search').length > 0 ) {
         history.push('/posts')
       }
   },[sessionStorage.getItem('search')]);
+
+  useEffect(() => {
+    modalOn(false)
+  },[]);
 
   useEffect(() => {
     if (!isFiltered ) {
@@ -40,12 +44,13 @@ const FullPostContainer = (props) => {
   )
 };
 
-const mapStateToProps = ({posts, auth},{match: {params:{id}}}) => {
+const mapStateToProps = ({posts, auth,modal},{match: {params:{id}}}) => {
   return {
     posts: posts.posts.filter(post => post._id === id)[Array.length - 1],
     isLoading: posts.isLoading,
     isAuthenticated: auth.isAuthenticated,
     isFiltered: posts.isFiltered,
+    ...modal
   }
 };
 

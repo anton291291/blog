@@ -19,8 +19,6 @@ const HeaderBlockContainer = (props) => {
         {...props}
         onRegisterLink={() => {
           history.push('/register')
-          fetchPosts()
-          modalOn(false)
         }}
         isAuthenticated={isAuthenticated}
         onLogin={() => {toggleModal(!isModalOn)}}

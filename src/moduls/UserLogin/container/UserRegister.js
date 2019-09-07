@@ -6,11 +6,11 @@ import {UserRegister} from '../../../components';
 
 const UserRegisterContainer = (props) => {
 
-  const {registerUser, payload,isModalOn,history, isAuthenticated,deleteLoginError} = props;
+  const {registerUser, payload,history, isAuthenticated,deleteLoginError} = props;
 
   useEffect(() => {
-    isAuthenticated ? history.push('/posts') : console.log('good');
-  })
+    isAuthenticated ? history.push('/posts') : console.log();
+  },[isAuthenticated])
 
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
@@ -56,7 +56,7 @@ const UserRegisterContainer = (props) => {
       passwordConfirmValid={payload === undefined ? null : payload.password_confirm}
 
       onSubmit={() => {
-        registerUser(registerData,!isModalOn)
+        registerUser(registerData, history)
       }}
     />
   );

@@ -10,10 +10,13 @@ import UserAuthActions from '../../UserLogin/actions'
 
 const PostListContainer = (props) => {
 
-  const {fetchPosts, fetchDeletePost,isLoading, isAuthenticated, isFiltered} = props;
+  const {modalOn,fetchPosts, fetchDeletePost,isLoading, isAuthenticated, isFiltered} = props;
 
   useEffect(() => {
     isFiltered ? console.log() :fetchPosts();
+  },[]);
+  useEffect(() => {
+    modalOn(false)
   },[]);
 
   return (
@@ -43,8 +46,12 @@ const PostListContainer = (props) => {
      )
 };
 
-const mapStateToProps = ({posts,auth}) => {
-return {...posts,...auth}};
+const mapStateToProps = ({posts,auth,modal}) => {
+return {
+  ...posts,
+  ...auth,
+  ...modal
+}};
 
 const mapDispatchToProps = {
   ...UserAuthActions,

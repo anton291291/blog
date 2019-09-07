@@ -1,10 +1,18 @@
 import React,{useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 
 import {SearchInput} from '../../../components';
 
-const SearchInputContainer = ({fetchSearchPosts,isFiltered}) => {
+import PostListActions from '../../PostList/actions';
+
+const SearchInputContainer = ({modalOn,fetchSearchPosts,isFiltered}) => {
 
   const [value,setValue] = useState(sessionStorage.getItem('search'));
+
+  useEffect(() => {
+    modalOn(false)
+  },[value]);
 
   useEffect(() => {
     sessionStorage.setItem('search',value)
@@ -23,4 +31,16 @@ const SearchInputContainer = ({fetchSearchPosts,isFiltered}) => {
   );
 };
 
-export default SearchInputContainer;
+const mapStateToProps = ({modal}) => {
+  return {
+    ...modal
+  }
+};
+
+const mapDispatchToProps = {
+  ...PostListActions,
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchInputContainer)
+);
