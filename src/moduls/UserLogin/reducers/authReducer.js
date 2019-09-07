@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
   const {type, payload} = action;
 
   switch (type) {
-    case "LOGIN:SET_CURRENT_USER":
+    case 'LOGIN:SET_CURRENT_USER':
       return {
         ...state,
         isAuthenticated: !isEmpty(payload),

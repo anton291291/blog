@@ -6,15 +6,15 @@ import {PostList} from '../../../components';
 import {HeaderBlock} from '../../index';
 
 import PostListActions from '../actions';
-import UserLoginActions from '../../UserLogin/actions'
+import UserAuthActions from '../../UserLogin/actions'
 
 const PostListContainer = (props) => {
 
   const {fetchPosts, fetchDeletePost,isLoading, isAuthenticated, isFiltered} = props;
 
-useEffect(() => {
-  isFiltered ? console.log() :fetchPosts();
-},[]);
+  useEffect(() => {
+    isFiltered ? console.log() :fetchPosts();
+  },[]);
 
   return (
     !isLoading ?
@@ -47,7 +47,7 @@ const mapStateToProps = ({posts,auth}) => {
 return {...posts,...auth}};
 
 const mapDispatchToProps = {
-  ...UserLoginActions,
+  ...UserAuthActions,
   ...PostListActions,
 };
 

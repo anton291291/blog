@@ -6,7 +6,7 @@ import {HollowDotsSpinner} from 'react-epic-spinners';
 import {HeaderBlock} from '../../index';
 import {FullPost} from '../../../components';
 import PostListActions from '../../PostList/actions';
-import UserLoginActions from '../../UserLogin/actions';
+import UserAuthActions from '../../UserLogin/actions';
 
 const FullPostContainer = (props) => {
 
@@ -51,7 +51,7 @@ const mapStateToProps = ({posts, auth},{match: {params:{id}}}) => {
 
 const mapDispatchToProps = {
   ...PostListActions,
-  ...UserLoginActions
+  ...UserAuthActions
 };
 
 export default withRouter(

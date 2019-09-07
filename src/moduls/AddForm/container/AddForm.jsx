@@ -5,7 +5,7 @@ import {withRouter} from 'react-router';
 import {PostApi} from '../../../utils/api';
 
 import PostListActions from '../../PostList/actions';
-import UserLoginActions from '../../UserLogin/actions';
+import UserAuthActions from '../../UserLogin/actions';
 
 import {AddForm} from '../../../components/index';
 import {HeaderBlock} from '../../index';
@@ -72,7 +72,7 @@ const AddFormContainer = (props) => {
       color='#f50057'
       size='30'
       animationDuration='1000'
-      className="preloader"
+      className='preloader'
     />
   )
 };
@@ -83,7 +83,7 @@ const mapStateToProps = ({posts,auth}) => {
 
 const mapDispatchToProps = {
   ...PostListActions,
-  ...UserLoginActions
+  ...UserAuthActions
 };
 
 export default withRouter(

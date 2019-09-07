@@ -21,7 +21,6 @@ const SearchInputContainer = ({fetchSearchPosts,isFiltered}) => {
       }}
      />
   );
-
 };
 
 export default SearchInputContainer;

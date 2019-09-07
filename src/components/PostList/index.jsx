@@ -10,16 +10,16 @@ import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import  Cancel  from '@material-ui/icons/Cancel';
 
-import "./PostList.scss"
+import './PostList.scss'
 
 const useStyles = makeStyles(theme => ({
   fab: {
-    marginTop: "30px",
-    marginBottom: "30px",
-    left: "47%",
+    marginTop: '30px',
+    marginBottom: '30px',
+    left: '47%',
   },
   button: {
-    fontSize: "10px",
+    fontSize: '10px',
     borderRadius: '0',
     marginLeft: '20px',
     width: '100px'
@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
 
 const PostList = (props) => {
 
-  const {posts,isAuthenticated,isFiltered,onRemoveSearch, onRemoveSessionStorage}= props;
+  const {posts,isAuthenticated,isFiltered,
+  onRemoveSearch, onRemoveSessionStorage}= props;
 
   const classes = useStyles();
 
@@ -41,11 +42,11 @@ const PostList = (props) => {
             duration={3}
             delay={1000}
             animateOnce={true} >
-            <Link to="/editor">
+            <Link to='/editor'>
               <Fab
                 onClick={onRemoveSessionStorage}
-                color="primary"
-                aria-label="add"
+                color='primary'
+                aria-label='add'
                 className={classes.fab}>
                 <AddIcon />
               </Fab>
@@ -61,13 +62,13 @@ const PostList = (props) => {
             duration={2}
             offset={10}
           >
-            <p className="filter-block">
-              <span className="filter-block__info">
+            <p className='filter-block'>
+              <span className='filter-block__info'>
                 Найдено постов по ключевому слову: {posts.length}
               </span>
 
-              <Button variant="contained" color="secondary"
-                size="small"
+              <Button variant='contained' color='secondary'
+                size='small'
                 className={classes.button}
                 onClick={onRemoveSearch}
               >
@@ -78,7 +79,7 @@ const PostList = (props) => {
        :
          null
       }
-        <div className="post-items">
+        <div className='post-items'>
           {
             posts.map((post) => {
               return <Postitem {...post} key={post._id}

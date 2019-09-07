@@ -5,7 +5,7 @@ import App from './App';
 
 import store from './store';
 
-import "./styles/app.scss"
+import './styles/app.scss'
 
 ReactDOM.render(
   <Provider store={store}>

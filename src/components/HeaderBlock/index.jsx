@@ -21,7 +21,9 @@ const useStyles = makeStyles(theme => ({
 
 const HeaderBlock = (props) => {
 
-  const {title, imageUrl,onClick,isAuthenticated,fetchPosts,modalOn,onLogout,history}= props;
+  const {title, imageUrl,onLogin,isAuthenticated,
+  onRegisterLink,onLogout}= props;
+
   const classes = useStyles();
 
   return (
@@ -37,11 +39,7 @@ const HeaderBlock = (props) => {
          ? <Button
           variant="contained"
           color="primary"
-          onClick={() => {
-            history.push('/register')
-            fetchPosts()
-            modalOn(false)
-          }}
+          onClick={onRegisterLink}
           className={classes.button}>
           Регистрация
         </Button>
@@ -60,7 +58,7 @@ const HeaderBlock = (props) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={onClick}
+            onClick={onLogin}
             className={classes.button}>
             Войти
           </Button>

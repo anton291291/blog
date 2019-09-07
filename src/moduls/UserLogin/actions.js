@@ -3,7 +3,7 @@ import setAuthToken from '../../core/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 
-const UserLoginActions = {
+const UserAuthActions = {
 
   getLoginError: (err) => {
     return {
@@ -34,7 +34,7 @@ const UserLoginActions = {
   },
 
   toggleModal: (bool) => dispatch => {
-    dispatch(UserLoginActions.modalOn(bool))
+    dispatch(UserAuthActions.modalOn(bool))
   },
 
   registerUser: (user, history) => dispatch => {
@@ -44,7 +44,7 @@ const UserLoginActions = {
               history.push('/posts')})
             .catch(err => {
               console.log(err);
-                dispatch(UserLoginActions.getLoginError(err));
+                dispatch(UserAuthActions.getLoginError(err));
             });
 },
 
@@ -56,22 +56,22 @@ const UserLoginActions = {
               localStorage.setItem('jwtToken', token);
               setAuthToken(token);
               const decoded = jwt_decode(token);
-              dispatch(UserLoginActions.setCurrentUser(decoded));
-              dispatch(UserLoginActions.modalOn(bool))
-              dispatch(UserLoginActions.deleteLoginError())
+              dispatch(UserAuthActions.setCurrentUser(decoded));
+              dispatch(UserAuthActions.modalOn(bool))
+              dispatch(UserAuthActions.deleteLoginError())
             })
             .catch(err => {
-                dispatch(UserLoginActions.getLoginError(err));
+                dispatch(UserAuthActions.getLoginError(err));
             });
   },
 
   logoutUser:  (history) => dispatch => {
     localStorage.removeItem('jwtToken');
     setAuthToken(false);
-    dispatch(UserLoginActions.setCurrentUser({}));
+    dispatch(UserAuthActions.setCurrentUser({}));
     history.push('/posts');
 },
 
 };
 
-export default UserLoginActions;
+export default UserAuthActions;

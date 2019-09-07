@@ -17,11 +17,9 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     marginTop: '-85px',
   },
-
   deleteBlock: {
     left: '60vw'
   },
-
   editBlock: {
     left: '55vw'
   }
@@ -29,7 +27,8 @@ const useStyles = makeStyles(theme => ({
 
 const Postitem = (props) => {
 
-  const {title,createdAt,_id,onRemovePost,isAuthenticated, onRemoveSessionStorage} = props;
+  const {title,createdAt,_id,onRemovePost,
+  isAuthenticated, onRemoveSessionStorage} = props;
 
   const classes = useStyles();
 

@@ -1,24 +1,29 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 
 import {UserLogin} from '../../index';
 import {HeaderBlock} from '../../../components/index';
 
-import UserLoginActions from '../../UserLogin/actions';
+import UserAuthActions from '../../UserLogin/actions';
 import PostListActions from '../../PostList/actions';
 
 const HeaderBlockContainer = (props) => {
 
-  const {isAuthenticated,logoutUser,history,toggleModal,isModalOn} = props;
-
+  const {isAuthenticated,logoutUser,history,
+  toggleModal,isModalOn,fetchPosts,modalOn} = props;
 
   return (
     <>
       <HeaderBlock
         {...props}
+        onRegisterLink={() => {
+          history.push('/register')
+          fetchPosts()
+          modalOn(false)
+        }}
         isAuthenticated={isAuthenticated}
-        onClick={() => {toggleModal(!isModalOn)}}
+        onLogin={() => {toggleModal(!isModalOn)}}
         onLogout={() => {
           logoutUser(history)
         }}/>
@@ -39,7 +44,7 @@ const mapStateToProps = ({posts,modal},{location: {pathname}}) => {
 
 const mapDispatchToProps = {
   ...PostListActions,
-  ...UserLoginActions
+  ...UserAuthActions
 };
 
 export default withRouter(

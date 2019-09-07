@@ -5,7 +5,7 @@ import {withRouter} from 'react-router';
 import {AddForm} from '../../../components/index';
 import {HeaderBlock} from '../../index';
 import PostListActions from '../../PostList/actions';
-import UserLoginActions from '../../UserLogin/actions';
+import UserAuthActions from '../../UserLogin/actions';
 import {PostApi} from '../../../utils/api';
 
 import {HollowDotsSpinner} from 'react-epic-spinners';
@@ -13,16 +13,16 @@ import {HollowDotsSpinner} from 'react-epic-spinners';
 const PostEditorContainer = (props) => {
 
   const {fetchPosts,_id,text,title,imageUrl,
-    history, isLoading, isAuthenticated} = props;
+  history, isLoading, isAuthenticated} = props;
 
   useEffect(() => {
     !isAuthenticated ?  history.push('/posts') : console.log('ok');
   },[isAuthenticated]);
 
   useEffect(() => {
-      if (sessionStorage.getItem('search').length > 0 ) {
-        history.push('/posts')
-      }
+    if (sessionStorage.getItem('search').length > 0 ) {
+      history.push('/posts')
+    }
   },[sessionStorage.getItem('search')]);
 
   const [textNode,setText] = useState(text);
@@ -73,7 +73,6 @@ const PostEditorContainer = (props) => {
           setTitle(e.target.value)
         }
         onSubmit={() => {
-          console.log(updateData);
           PostApi.put(_id,updateData)
           setTimeout(() => {
             history.push(`/posts/${_id}`)
@@ -86,7 +85,7 @@ const PostEditorContainer = (props) => {
      color='#f50057'
      size='30'
      animationDuration='1000'
-     className="preloader"
+     className='preloader'
    />
   )
 };
@@ -98,7 +97,7 @@ const mapStateToProps = ({posts,auth},{match: {params:{id}}}) => {
 
 const mapDispatchToProps = {
   ...PostListActions,
-  ...UserLoginActions
+  ...UserAuthActions
 };
 
 export default withRouter(

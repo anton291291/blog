@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
-import UserLoginActions from '../actions';
+import UserAuthActions from '../actions';
 import {UserLogin} from '../../../components';
 
 const UserLoginContainer = (props) => {
@@ -13,8 +12,8 @@ const UserLoginContainer = (props) => {
   const [password,setPassword] = useState('');
 
   const loginData= {
-    "email": email,
-    "password": password
+    'email': email,
+    'password': password
   };
 
   return (
@@ -54,5 +53,5 @@ return {
 
 export default connect(
   mapStateToProps,
-  UserLoginActions
+  UserAuthActions
 )(UserLoginContainer);

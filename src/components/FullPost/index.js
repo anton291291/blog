@@ -7,14 +7,14 @@ import 'moment/locale/ru'
 
 import  ArrowBack  from '@material-ui/icons/ArrowBack';
 import { makeStyles } from '@material-ui/core/styles';
-import "./FullPost.scss"
+import './FullPost.scss'
 import ScrollAnimation from 'react-animate-on-scroll';
 
 const useStyles = makeStyles(theme => ({
  button: {
-    margin:" 20px auto",
+    margin:' 20px auto',
     borderRadius: '0',
-    fontSize: "10px"
+    fontSize: '10px'
   }
 }));
 
@@ -29,20 +29,20 @@ const FullPost = ({text,createdAt}) => {
       animateIn='fadeIn'
       duration={2}
     >
-      <div className="full-post">
-        <div className="container">
-          <Link to="/">
-            <Button variant="contained" color="secondary"
-              size="small"
+      <div className='full-post'>
+        <div className='container'>
+          <Link to='/'>
+            <Button variant='contained' color='secondary'
+              size='small'
               className={classes.button} >
               <ArrowBack/>
           </Button>
         </Link>
-        <div className="full-post__details">
+        <div className='full-post__details'>
           <i>Пост создан {moment(createdAt).format('LLL')}</i>
         </div>
         <br />
-        <p className="full-post__text">{text}</p>
+        <p className='full-post__text'>{text}</p>
       </div>
     </div>
     </ScrollAnimation>

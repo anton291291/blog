@@ -4,11 +4,11 @@ export default function (state = initialState, action) {
   const {type, payload} = action;
 
   switch (type) {
-    case "LOGIN:GET_ERRORS":
+    case 'LOGIN:GET_ERRORS':
       return {
         payload
       };
-    case "LOGIN:DELETE_ERRORS":
+    case 'LOGIN:DELETE_ERRORS':
       return {
         payload
       };

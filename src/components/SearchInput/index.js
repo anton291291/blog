@@ -7,11 +7,10 @@ import SearchIcon from '@material-ui/icons/Search';
 
 
 const useStyles = makeStyles(theme => ({
-
   search: {
     zIndex: '99',
     position: 'relative',
-    fontSize: "10px",
+    fontSize: '10px',
     backgroundColor: fade(theme.palette.common.white, 0.6),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.85),
@@ -50,7 +49,7 @@ const SearchInput = ({onKeyUp, value, onChange}) => {
         value={value}
         onChange={onChange}
         onKeyUp={onKeyUp}
-        placeholder="поиск…"
+        placeholder='поиск…'
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,

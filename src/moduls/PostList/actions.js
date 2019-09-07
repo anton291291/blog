@@ -3,14 +3,14 @@ import {PostApi} from '../../utils/api';
 const PostListActions = {
   showPosts: (posts) => {
     return {
-      type: "POSTS:SET_POSTS",
+      type: 'POSTS:SET_POSTS',
       payload: posts
     }
   },
 
   searchPosts: (posts) => {
     return {
-      type: "POSTS:SEARCH_POSTS",
+      type: 'POSTS:SEARCH_POSTS',
       payload: posts,
     }
   },

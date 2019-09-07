@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
@@ -8,21 +8,21 @@ import Icon from '@material-ui/core/Icon';
 import  ArrowBack  from '@material-ui/icons/ArrowBack';
 import {ToolsBar} from '../index';
 
-import "./AddForm.scss";
+import './AddForm.scss';
 import ScrollAnimation from 'react-animate-on-scroll';
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   rightIcon: {
    marginLeft: theme.spacing(1),
  },
  button: {
-    margin:" 20px auto",
+    margin:' 20px auto',
     borderRadius: '0',
-    fontSize: "10px"
+    fontSize: '10px'
   }
 }));
 
@@ -34,53 +34,52 @@ const AddForm = (props) => {
   const classes = useStyles();
 
   return (
-    <div className="form-block">
+    <div className='form-block'>
       <ScrollAnimation
         animateIn='fadeIn'
         duration={2}
       >
-        <Link to="/">
-          <Button variant="contained" color="secondary"
-            size="small"
+        <Link to='/'>
+          <Button variant='contained' color='secondary'
+            size='small'
             className={classes.button} >
             <ArrowBack/>
           </Button>
         </Link>
         <form className={classes.container}>
           <TextField
-            id="outlined-email-input"
-            label="Линк на картинку"
+            id='outlined-email-input'
+            label='Линк на картинку'
             className={classes.textField}
-            margin="normal"
-            variant="outlined"
+            margin='normal'
+            variant='outlined'
             value={imageUrl}
             onChange={onChangeImage}
           />
           <TextField
-            id="outlined-required"
-            label="Заголовок поста"
+            id='outlined-required'
+            label='Заголовок поста'
             className={classes.textField}
-            margin="normal"
-            variant="outlined"
+            margin='normal'
+            variant='outlined'
             value={title}
             onChange={onChangeTitle}
           />
-          <ToolsBar/>
           <TextField
-            id="outlined-textarea"
-            label="Текст поста"
-            placeholder="Как-то мне не сиделось..."
+            id='outlined-textarea'
+            label='Текст поста'
+            placeholder='Как-то мне не сиделось...'
             multiline
             fullWidth
             className={classes.textField}
-            margin="normal"
-            variant="outlined"
-            rows="8"
+            margin='normal'
+            variant='outlined'
+            rows='8'
             value={text}
             onChange={onChangeText}
           />
-          <Button variant="contained"
-            color="primary"
+          <Button variant='contained'
+            color='primary'
             className={classes.button}
             onClick={onSubmit}
           >
