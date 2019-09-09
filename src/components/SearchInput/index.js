@@ -36,7 +36,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SearchInput = ({onKeyUp, value, onChange}) => {
+const SearchInput = (props) => {
+
+  const {autoFocus,onKeyUp, value, onChange}= props;
+
   const classes = useStyles();
 
   return (
@@ -45,7 +48,7 @@ const SearchInput = ({onKeyUp, value, onChange}) => {
         <SearchIcon />
       </div>
       <InputBase
-        autoFocus
+        autoFocus={autoFocus}
         value={value}
         onChange={onChange}
         onKeyUp={onKeyUp}

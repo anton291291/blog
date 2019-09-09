@@ -8,7 +8,7 @@ import PostListActions from '../../PostList/actions';
 
 const SearchInputContainer = ({modalOn,fetchSearchPosts,isFiltered}) => {
 
-  const [value,setValue] = useState(sessionStorage.getItem('search'));
+  const [value,setValue] = useState(sessionStorage.getItem('search') || '');
 
   useEffect(() => {
     modalOn(false)
@@ -20,6 +20,7 @@ const SearchInputContainer = ({modalOn,fetchSearchPosts,isFiltered}) => {
 
   return (
     <SearchInput
+      autoFocus={isFiltered ? true : false}
       value={value}
       onChange={(e) => {
         setValue(e.target.value)

@@ -14,9 +14,7 @@ import './PostList.scss'
 
 const useStyles = makeStyles(theme => ({
   fab: {
-    marginTop: '30px',
-    marginBottom: '30px',
-    left: '47%',
+    margin: '30px 44%'
   },
   button: {
     fontSize: '10px',
