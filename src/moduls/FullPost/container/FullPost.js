@@ -10,7 +10,13 @@ import UserAuthActions from '../../UserLogin/actions';
 
 const FullPostContainer = (props) => {
 
-  const {modalOn,fetchPosts, isLoading, isFiltered, history} = props;
+  const {modalOn,fetchPosts, isLoading, isFiltered, history, posts} = props;
+
+  useEffect(() => {
+    if (!isFiltered ) {
+      fetchPosts();}
+  },[]
+  )
 
   useEffect(() => {
       if (sessionStorage.getItem('search').length > 0 ) {
@@ -19,16 +25,15 @@ const FullPostContainer = (props) => {
   },[sessionStorage.getItem('search')]);
 
   useEffect(() => {
-    modalOn(false)
+    window.scrollTo(0, 0)
   },[]);
 
   useEffect(() => {
-    if (!isFiltered ) {
-      fetchPosts();}
-  },[])
+    modalOn(false)
+  },[]);
 
   return (
-    !isLoading
+    posts
     ?
       <>
         <HeaderBlock {...props} />

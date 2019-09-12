@@ -6,3 +6,4 @@ export {default as PostEditor} from './PostEditor';
 export {default as UserLogin} from './UserLogin';
 export {default as UserRegister} from './UserLogin/container/UserRegister'
 export {default as SearchInput} from './SearchInput'
+export {default as MarkDownPreviewer} from './MarkDownPreviewer'

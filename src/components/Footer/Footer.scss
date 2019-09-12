@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.heart {
+  display: flex;
+  margin-bottom: 0
+}
+
+.fa-heart {
+  animation-iteration-count: infinite;
+  animation-duration: .7s;
+  color: #f50057;
+  justify-content: center;
+  margin: 5px;
+  position: relative;
+  bottom: 10px;
+}

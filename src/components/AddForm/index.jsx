@@ -6,7 +6,9 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import  ArrowBack  from '@material-ui/icons/ArrowBack';
-import {ToolsBar} from '../index';
+
+import {MarkDownPreviewer} from '../../moduls';
+
 
 import './AddForm.scss';
 import ScrollAnimation from 'react-animate-on-scroll';
@@ -65,18 +67,9 @@ const AddForm = (props) => {
             value={title}
             onChange={onChangeTitle}
           />
-          <TextField
-            id='outlined-textarea'
-            label='Текст поста'
-            placeholder='Как-то мне не сиделось...'
-            multiline
-            fullWidth
-            className={classes.textField}
-            margin='normal'
-            variant='outlined'
-            rows='8'
-            value={text}
-            onChange={onChangeText}
+          <MarkDownPreviewer
+            text={text}
+            onChangeText={onChangeText}
           />
           <Button variant='contained'
             color='primary'

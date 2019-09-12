@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
+import {Footer} from '../index';
+
 import Button from '@material-ui/core/Button';
 import  Cancel  from '@material-ui/icons/Cancel';
 
@@ -72,19 +74,20 @@ const PostList = (props) => {
               >
                 <Cancel/> сбросить
               </Button>
-        </p>
-        </ScrollAnimation>
-       :
+            </p>
+          </ScrollAnimation>
+        :
          null
       }
-        <div className='post-items'>
-          {
-            posts.map((post) => {
-              return <Postitem {...post} key={post._id}
-                {...props}/>
-            })
-          }
-        </div>
+      <div className='post-items'>
+        {
+          posts.map((post) => {
+            return <Postitem {...post} key={post._id}
+              {...props}/>
+          })
+        }
+      </div>
+      <Footer/>
     </>
   );
 }

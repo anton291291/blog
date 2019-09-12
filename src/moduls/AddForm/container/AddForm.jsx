@@ -22,6 +22,11 @@ const AddFormContainer = (props) => {
   },[isAuthenticated]);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  },[]);
+
+
+  useEffect(() => {
     if (sessionStorage.getItem('search').length > 0 ) {
       history.push('/posts')
     }

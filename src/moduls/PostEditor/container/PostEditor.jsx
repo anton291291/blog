@@ -10,6 +10,7 @@ import {PostApi} from '../../../utils/api';
 
 import {HollowDotsSpinner} from 'react-epic-spinners';
 
+
 const PostEditorContainer = (props) => {
 
   const {fetchPosts,_id,text,title,imageUrl,
@@ -20,6 +21,14 @@ const PostEditorContainer = (props) => {
   },[isAuthenticated]);
 
   useEffect(() => {
+    fetchPosts();
+  },[]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  },[]);
+
+  useEffect(() => {
     if (sessionStorage.getItem('search').length > 0 ) {
       history.push('/posts')
     }
@@ -28,10 +37,6 @@ const PostEditorContainer = (props) => {
   const [textNode,setText] = useState(text);
   const [titleNode,setTitle] = useState(title);
   const [imageUrlNode,setImageUrl] = useState(imageUrl);
-
-  useEffect(() => {
-    fetchPosts();
-  },[]);
 
   useEffect(() => {
     setText(text

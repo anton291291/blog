@@ -15,6 +15,7 @@ const PostListContainer = (props) => {
   useEffect(() => {
     isFiltered ? console.log() :fetchPosts();
   },[]);
+
   useEffect(() => {
     modalOn(false)
   },[]);
