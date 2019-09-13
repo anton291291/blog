@@ -1,10 +1,11 @@
 import React from 'react';
 import marked from 'marked';
+import DOMPurify from 'dompurify';
 
 import './PreviewArea.scss';
 
 marked.setOptions({
-  breaks: false
+  breaks: true
 });
 const renderer = new marked.Renderer();
 
@@ -19,7 +20,7 @@ const PreviewArea = ({text}) => {
   return (
     <div
       className='preview'
-      dangerouslySetInnerHTML={{__html: text === undefined ? null : marked(text, { renderer: renderer })}}>
+      dangerouslySetInnerHTML={{__html: text === undefined ? null : DOMPurify.sanitize(marked(text, { renderer: renderer }), {ADD_TAGS: ['iframe']})}}>
     </div>
   )
 }

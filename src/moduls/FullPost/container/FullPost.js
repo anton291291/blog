@@ -37,7 +37,7 @@ const FullPostContainer = (props) => {
     ?
       <>
         <HeaderBlock {...props} />
-        <FullPost {...props.posts}/>
+        <FullPost {...props} />
       </>
     :
       <HollowDotsSpinner

@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import marked from 'marked';
 import moment from 'moment';
 import 'moment/locale/ru'
+import DOMPurify from 'dompurify';
 
-import {Footer} from '../index';
+import {Footer,ShareButtons} from '../index';
 
 import Button from '@material-ui/core/Button';
 import  ArrowBack  from '@material-ui/icons/ArrowBack';
@@ -21,12 +22,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FullPost = ({text,createdAt}) => {
+const FullPost = (props) => {
+
+  const {text,createdAt} = props.posts;
 
   const classes = useStyles();
 
   moment.locale('ru');
-  
+
   return (
 
     <ScrollAnimation
@@ -45,13 +48,14 @@ const FullPost = ({text,createdAt}) => {
           <div className='full-post__details'>
             <i>Пост создан {moment(createdAt).format('LLL')}</i>
           </div>
+          <ShareButtons {...props}/>
           <br />
           <div className='full-post__text'
-            dangerouslySetInnerHTML={{__html: marked(text)}} />
+            dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(marked(text),{ADD_TAGS: ['iframe']})}} />
         </div>
       </div>
       <Footer/>
-    </ScrollAnimation>
+      </ScrollAnimation >
 )
 }
 

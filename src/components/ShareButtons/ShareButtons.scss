@@ -1,0 +1,25 @@
+.socialbtn-block {
+  display: flex;
+  margin-top: 10px;
+  justify-content:flex-end;
+
+  .SocialMediaShareButton {
+    margin: 3px;
+    border-bottom: 5px solid white;
+    
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      transition: 1s;
+      border-bottom: 5px solid #f50057;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+}
