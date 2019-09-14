@@ -25,22 +25,25 @@ const AddFormContainer = (props) => {
     window.scrollTo(0, 0)
   },[]);
 
-
   useEffect(() => {
-    if (sessionStorage.getItem('search').length > 0 ) {
+    if (sessionStorage.getItem('search') && sessionStorage.getItem('search').length > 0 ) {
       history.push('/posts')
     }
   },[sessionStorage.getItem('search')]);
-
-  useEffect(() => {
-    fetchPosts()
-  },[]);
 
   const [text,setText] = useState('');
   const [title,setTitle] = useState('');
   const [imageUrl,setImageUrl] = useState('');
 
   const date = {'title': title,'text': text,'imageUrl': imageUrl};
+
+  const fetchCreatePost = async (date) => {
+    await  PostApi.post(date);
+    PostApi.get()
+    .then(({data}) => {
+      history.push(`/posts/${data[data.length -1]._id}`)
+    });
+  };
 
   return (
     !isLoading
@@ -61,16 +64,9 @@ const AddFormContainer = (props) => {
         onChangeTitle={e =>
           setTitle(e.target.value)
         }
-        onSubmit={ () => {
-          PostApi.post(date)
-          .then((res) => console.log(res));
-          PostApi.get()
-          .then(({data}) => {
-            setTimeout(() => {
-              history.push(`/posts/${data[data.length -1]._id}`)}, 1000)
-          })
-        }
-        }/>
+        onSubmit={() => {
+          fetchCreatePost(date,history)
+        }}/>
     </>
     :
     <HollowDotsSpinner

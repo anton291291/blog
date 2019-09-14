@@ -77,11 +77,9 @@ const PostEditorContainer = (props) => {
         onChangeTitle={e =>
           setTitle(e.target.value)
         }
-        onSubmit={() => {
-          PostApi.put(_id,updateData)
-          setTimeout(() => {
-            history.push(`/posts/${_id}`)
-          }, 1000)
+        onSubmit={async () => {
+          await PostApi.put(_id,updateData);
+          history.push(`/posts/${_id}`);
         }}
       />
    </>

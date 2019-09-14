@@ -64,6 +64,15 @@ preloaderOff: (bool) => {
     }).then(() => dispatch(PostListActions.preloaderOff())) ;
   },
 
+
+  fetchCreatePosts: async (date,history) => {
+  await  Promise.all([PostApi.post(date),PostApi.get()])
+          .then(({data}) => {
+            history.push(`/posts/${data[data.length -1]._id}`)
+            console.log(data);
+        })
+  },
+
 };
 
 export default PostListActions;
