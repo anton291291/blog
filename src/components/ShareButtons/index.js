@@ -24,13 +24,11 @@ import './ShareButtons.scss'
 
 const ShareButtons = (props) => {
 
-const {match:{url}}=props;
-
   return (
 
     <span className='socialbtn-block'>
       <FacebookShareButton
-        url={url}
+        url={window.location.href}
       >
         <FacebookIcon
           size={34}
@@ -38,7 +36,7 @@ const {match:{url}}=props;
       </FacebookShareButton>
 
       <TwitterShareButton
-        url={url}
+        url={window.location.href}
       >
         <TwitterIcon
           size={34}
@@ -46,7 +44,8 @@ const {match:{url}}=props;
       </TwitterShareButton>
 
       <VKShareButton
-        url={url}
+        url={window.location.href}
+        text="Привет"
       >
         <VKIcon
           size={34}
@@ -54,7 +53,7 @@ const {match:{url}}=props;
       </VKShareButton>
 
       <TelegramShareButton
-        url={url}
+        url={window.location.href}
       >
         <TelegramIcon
           size={34}
@@ -62,20 +61,12 @@ const {match:{url}}=props;
       </TelegramShareButton>
 
       <WhatsappShareButton
-        url={url}
+        url={window.location.href}
       >
         <WhatsappIcon
           size={34}
         />
       </WhatsappShareButton>
-
-      <ViberShareButton
-        url={url}
-      >
-        <ViberIcon
-          size={34}
-        />
-      </ViberShareButton>
 
     </span>
   );

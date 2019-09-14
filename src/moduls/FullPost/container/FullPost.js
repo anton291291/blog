@@ -10,7 +10,7 @@ import UserAuthActions from '../../UserLogin/actions';
 
 const FullPostContainer = (props) => {
 
-  const {modalOn,fetchPosts, isLoading, isFiltered, history, posts} = props;
+  const {modalOn,fetchPosts, isFiltered, history, posts} = props;
 
   useEffect(() => {
     if (!isFiltered ) {
@@ -19,7 +19,7 @@ const FullPostContainer = (props) => {
   )
 
   useEffect(() => {
-      if (sessionStorage.getItem('search').length > 0 ) {
+      if (sessionStorage.getItem('search') && sessionStorage.getItem('search').length > 0 ) {
         history.push('/posts')
       }
   },[sessionStorage.getItem('search')]);
